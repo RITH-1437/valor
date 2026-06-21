@@ -1,0 +1,38 @@
+# Flutter
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub/
+build/
+pubspec.lock
+
+# Android
+android/.gradle/
+android/app/build/
+
+# iOS
+ios/Pods/
+ios/.symlinks/
+
+# VSCode
+.vscode/
+
+# Laravel
+vendor/
+node_modules/
+.env
+.env.*
+!.env.example
+public/storage
+
+# Logs
+*.log
+
+# Cache
+bootstrap/cache/*.php
+
+# Misc
+.idea/
+.aider*
+*.svgc
