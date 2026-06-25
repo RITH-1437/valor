@@ -9,6 +9,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
 
@@ -16,6 +17,10 @@ class AuthController extends Controller
 {
     public function register(Request $request): JsonResponse
     {
+        $raw = $request->getContent();
+        $input = json_decode($raw, true) ?? $request->all();
+        $request->merge($input);
+
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -40,14 +45,19 @@ class AuthController extends Controller
 
     public function login(Request $request): JsonResponse
     {
+        $raw = $request->getContent();
+        $input = json_decode($raw, true) ?? $request->all();
+
+        $request->merge($input);
+
         $request->validate([
             'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string'],
         ]);
 
-        $user = User::where('email', $request->email)->first();
+        $user = User::where('email', $input['email'] ?? '')->first();
 
-        if (! $user || ! Hash::check($request->password, $user->password)) {
+        if (! $user || ! Hash::check($input['password'] ?? '', $user->password)) {
             throw ValidationException::withMessages([
                 'email' => ['The provided credentials are incorrect.'],
             ]);
@@ -86,6 +96,51 @@ class AuthController extends Controller
 
         return response()->json([
             'user' => new UserResource($request->user()->fresh()),
+        ]);
+    }
+
+    public function uploadAvatar(Request $request): JsonResponse
+    {
+        $request->validate([
+            'avatar' => ['required', 'image', 'mimes:jpeg,png,jpg,webp', 'max:2048'],
+        ]);
+
+        $user = $request->user();
+
+        if ($user->avatar) {
+            $oldPath = str_replace(url('/storage') . '/', '', $user->avatar);
+            if (Storage::disk('public')->exists($oldPath)) {
+                Storage::disk('public')->delete($oldPath);
+            }
+        }
+
+        $path = $request->file('avatar')->store('avatars', 'public');
+        $avatarUrl = url('/storage/' . $path);
+
+        $user->update(['avatar' => $avatarUrl]);
+
+        return response()->json([
+            'user' => new UserResource($user->fresh()),
+            'message' => 'Avatar uploaded successfully.',
+        ]);
+    }
+
+    public function deleteAvatar(Request $request): JsonResponse
+    {
+        $user = $request->user();
+
+        if ($user->avatar) {
+            $oldPath = str_replace(url('/storage') . '/', '', $user->avatar);
+            if (Storage::disk('public')->exists($oldPath)) {
+                Storage::disk('public')->delete($oldPath);
+            }
+        }
+
+        $user->update(['avatar' => null]);
+
+        return response()->json([
+            'user' => new UserResource($user->fresh()),
+            'message' => 'Avatar removed successfully.',
         ]);
     }
 }

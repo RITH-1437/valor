@@ -140,7 +140,7 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
             isActive: _currentStep >= 1,
             content: Column(
               children: [
-                _paymentOption('credit_card', 'Credit Card', Icons.credit_card),
+                _paymentOption('credit_card', 'Credit Card', Icons.credit_card_rounded),
                 const SizedBox(height: 8),
                 _paymentOption('debit_card', 'Debit Card', Icons.payment),
                 const SizedBox(height: 8),
@@ -211,16 +211,33 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
 
     setState(() => _isPlacingOrder = true);
 
-    final address = '${_selectedAddress!.street}, ${_selectedAddress!.district}, ${_selectedAddress!.city}, ${_selectedAddress!.country}';
-    final order = await ref.read(orderProvider.notifier).placeOrder(
-      shippingAddress: address,
-      paymentMethod: _paymentMethod,
-    );
+    try {
+      final address = '${_selectedAddress!.street}, ${_selectedAddress!.district}, ${_selectedAddress!.city}, ${_selectedAddress!.country}';
+      final order = await ref.read(orderProvider.notifier).placeOrder(
+        shippingAddress: address,
+        paymentMethod: _paymentMethod,
+      );
 
-    setState(() => _isPlacingOrder = false);
+      if (!mounted) return;
 
-    if (order != null && mounted) {
-      context.go('/orders');
+      if (order != null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Order placed successfully!'), backgroundColor: Colors.green),
+        );
+        context.go('/orders');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Failed to place order. Please try again.'), backgroundColor: Colors.redAccent),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Order failed: $e'), backgroundColor: Colors.redAccent),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _isPlacingOrder = false);
     }
   }
 
@@ -241,7 +258,7 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
             const SizedBox(width: 12),
             Text(label, style: TextStyle(color: selected ? AppTheme.gold : Colors.white, fontWeight: FontWeight.w600)),
             const Spacer(),
-            if (selected) const Icon(Icons.check_circle, color: AppTheme.gold, size: 20),
+            if (selected) const Icon(Icons.check_circle_outline, color: AppTheme.gold, size: 20),
           ],
         ),
       ),

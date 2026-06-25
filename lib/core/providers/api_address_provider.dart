@@ -1,10 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../data/mock_repositories.dart';
 import '../models/api_address.dart';
+import '../network/api_client.dart' show ApiClient, ApiMode;
 import '../repositories/address_repository.dart';
 import 'auth_provider.dart';
 
 final addressRepositoryProvider = Provider<AddressRepository>((ref) {
-  return AddressRepository();
+  return ApiClient.apiMode == ApiMode.live ? ApiAddressRepository() : MockAddressRepository();
 });
 
 class AddressNotifier extends AsyncNotifier<List<AddressModel>> {

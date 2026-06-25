@@ -20,9 +20,9 @@ class AdminDashboardScreen extends ConsumerWidget {
       appBar: AppBar(title: const Text('Admin Dashboard')),
       body: dashboardAsync.when(
         data: (data) {
-          final stats = data['stats'] as Map<String, dynamic>;
-          final recentOrders = data['recent_orders'] as List;
-          final topProducts = data['top_products'] as List;
+          final stats = (data['stats'] as Map<String, dynamic>?) ?? {};
+          final recentOrders = (data['recent_orders'] as List?) ?? [];
+          final topProducts = (data['top_products'] as List?) ?? [];
           final lowStock = stats['low_stock_products'] ?? 0;
 
           return RefreshIndicator(
@@ -50,7 +50,7 @@ class AdminDashboardScreen extends ConsumerWidget {
                       _statCard('Pending Orders', '${stats['pending_orders'] ?? 0}', Icons.pending_actions, Colors.orange),
                       _statCard('Delivered', '${stats['delivered_orders'] ?? 0}', Icons.check_circle_outline, Colors.green),
                       _statCard('Low Stock', '$lowStock', Icons.warning_amber, lowStock > 0 ? Colors.redAccent : AppTheme.gray),
-                      _statCard('Reviews', '${stats['total_reviews'] ?? 0}', Icons.star_outline, Colors.amber),
+                      _statCard('Reviews', '${stats['total_reviews'] ?? 0}', Icons.star_outline_rounded, Colors.amber),
                     ],
                   ),
 

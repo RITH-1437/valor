@@ -1,15 +1,25 @@
 import '../models/api_address.dart';
 import '../network/api_client.dart';
 
-class AddressRepository {
+abstract class AddressRepository {
+  Future<List<AddressModel>> getAddresses();
+  Future<AddressModel> createAddress({required String fullName, required String phone, required String country, required String city, required String district, required String street, String? postalCode, bool isDefault = false});
+  Future<AddressModel> updateAddress(int id, {String? fullName, String? phone, String? country, String? city, String? district, String? street, String? postalCode, bool? isDefault});
+  Future<void> deleteAddress(int id);
+  Future<AddressModel> setDefault(int id);
+}
+
+class ApiAddressRepository implements AddressRepository {
   final _client = ApiClient().dio;
 
+  @override
   Future<List<AddressModel>> getAddresses() async {
     final response = await _client.get('/addresses');
     final data = response.data['data'] as List;
     return data.map((e) => AddressModel.fromJson(e)).toList();
   }
 
+  @override
   Future<AddressModel> createAddress({
     required String fullName,
     required String phone,
@@ -33,6 +43,7 @@ class AddressRepository {
     return AddressModel.fromJson(response.data['data']);
   }
 
+  @override
   Future<AddressModel> updateAddress(int id, {
     String? fullName,
     String? phone,
@@ -57,10 +68,12 @@ class AddressRepository {
     return AddressModel.fromJson(response.data['data']);
   }
 
+  @override
   Future<void> deleteAddress(int id) async {
     await _client.delete('/addresses/$id');
   }
 
+  @override
   Future<AddressModel> setDefault(int id) async {
     final response = await _client.post('/addresses/$id/default');
     return AddressModel.fromJson(response.data['data']);

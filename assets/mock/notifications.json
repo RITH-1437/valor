@@ -1,0 +1,9 @@
+{
+  "data": [
+    { "id": 1, "title": "Order Shipped!", "message": "Your order VAL-2026-0002 has been shipped and is on its way.", "type": "order_shipped", "is_read": false, "data": null, "created_at": "2026-06-21T10:00:00Z" },
+    { "id": 2, "title": "Payment Confirmed", "message": "Your payment of $208.96 for order VAL-2026-0003 has been confirmed.", "type": "payment_success", "is_read": false, "data": null, "created_at": "2026-06-20T09:35:00Z" },
+    { "id": 3, "title": "Order Delivered", "message": "Your order VAL-2026-0001 has been delivered successfully. Enjoy!", "type": "order_delivered", "is_read": true, "data": null, "created_at": "2026-06-18T15:00:00Z" },
+    { "id": 4, "title": "Low Stock Alert", "message": "The Leather Biker Jacket is running low in stock. Only 3 left!", "type": "stock_alert", "is_read": true, "data": null, "created_at": "2026-06-16T08:00:00Z" },
+    { "id": 5, "title": "New Collection", "message": "The Summer '26 collection is here. Discover lightweight linens and breathable cottons.", "type": "marketing", "is_read": true, "data": null, "created_at": "2026-06-01T09:00:00Z" }
+  ]
+}

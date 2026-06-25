@@ -1,10 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../data/mock_repositories.dart';
 import '../models/api_wishlist.dart';
+import '../network/api_client.dart' show ApiClient, ApiMode;
 import '../repositories/wishlist_repository.dart';
 import 'auth_provider.dart';
 
 final wishlistRepositoryProvider = Provider<WishlistRepository>((ref) {
-  return WishlistRepository();
+  return ApiClient.apiMode == ApiMode.live ? ApiWishlistRepository() : MockWishlistRepository();
 });
 
 class WishlistNotifier extends AsyncNotifier<List<WishlistModel>> {
@@ -16,13 +18,17 @@ class WishlistNotifier extends AsyncNotifier<List<WishlistModel>> {
   }
 
   Future<void> add(int productId) async {
-    await ref.read(wishlistRepositoryProvider).addToWishlist(productId);
-    ref.invalidateSelf();
+    try {
+      await ref.read(wishlistRepositoryProvider).addToWishlist(productId);
+      ref.invalidateSelf();
+    } catch (_) {}
   }
 
   Future<void> remove(int productId) async {
-    await ref.read(wishlistRepositoryProvider).removeFromWishlist(productId);
-    ref.invalidateSelf();
+    try {
+      await ref.read(wishlistRepositoryProvider).removeFromWishlist(productId);
+      ref.invalidateSelf();
+    } catch (_) {}
   }
 }
 

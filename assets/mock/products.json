@@ -1,0 +1,454 @@
+{
+  "data": [
+    {
+      "id": 1, "category_id": 1, "name": "Signature Cotton Tee", "slug": "signature-cotton-tee",
+      "description": "Our signature crewneck tee crafted from 100% organic cotton. A wardrobe essential with a perfect relaxed fit and reinforced seams for lasting wear.",
+      "short_description": "Essential organic cotton crewneck tee",
+      "price": 49.99, "discount_price": null, "effective_price": 49.99,
+      "has_discount": false, "discount_percent": 0, "stock": 25, "sku": "VAL-TS-001",
+      "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600",
+      "is_featured": true, "is_trending": true, "is_active": true,
+      "images": [
+        { "id": 1, "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600", "sort_order": 0 },
+        { "id": 2, "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600", "sort_order": 1 },
+        { "id": 3, "image": "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600", "sort_order": 2 }
+      ],
+      "sizes": [{ "id": 1, "size": "S" }, { "id": 2, "size": "M" }, { "id": 3, "size": "L" }, { "id": 4, "size": "XL" }, { "id": 5, "size": "XXL" }],
+      "colors": [{ "id": 1, "name": "Black", "hex_code": "#111111" }, { "id": 2, "name": "White", "hex_code": "#FFFFFF" }, { "id": 3, "name": "Navy", "hex_code": "#1B2838" }, { "id": 4, "name": "Charcoal", "hex_code": "#36454F" }],
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": 2, "category_id": 1, "name": "Gold Label Polo", "slug": "gold-label-polo",
+      "description": "Luxury pique cotton polo with gold-tone buttons and embroidered VALOR crest. Elevated casual wear with a tailored fit.",
+      "short_description": "Premium pique cotton polo with gold accents",
+      "price": 89.99, "discount_price": 69.99, "effective_price": 69.99,
+      "has_discount": true, "discount_percent": 22, "stock": 18, "sku": "VAL-TS-002",
+      "image": "https://images.unsplash.com/photo-1594930328298-ac383bd6250d?w=600",
+      "is_featured": true, "is_trending": false, "is_active": true,
+      "images": [
+        { "id": 4, "image": "https://images.unsplash.com/photo-1594930328298-ac383bd6250d?w=600", "sort_order": 0 },
+        { "id": 5, "image": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600", "sort_order": 1 }
+      ],
+      "sizes": [{ "id": 6, "size": "S" }, { "id": 7, "size": "M" }, { "id": 8, "size": "L" }, { "id": 9, "size": "XL" }],
+      "colors": [{ "id": 5, "name": "Black", "hex_code": "#111111" }, { "id": 6, "name": "White", "hex_code": "#FFFFFF" }],
+      "created_at": "2026-01-05T00:00:00Z"
+    },
+    {
+      "id": 3, "category_id": 1, "name": "Valor Heavyweight Tee", "slug": "valor-heavyweight-tee",
+      "description": "280gsm heavyweight cotton tee with a boxy, oversized fit. Features our signature back print and ribbed collar.",
+      "short_description": "Heavyweight oversized cotton tee",
+      "price": 59.99, "discount_price": null, "effective_price": 59.99,
+      "has_discount": false, "discount_percent": 0, "stock": 30, "sku": "VAL-TS-003",
+      "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600",
+      "is_featured": true, "is_trending": true, "is_active": true,
+      "images": [
+        { "id": 6, "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600", "sort_order": 0 },
+        { "id": 7, "image": "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600", "sort_order": 1 }
+      ],
+      "sizes": [{ "id": 10, "size": "M" }, { "id": 11, "size": "L" }, { "id": 12, "size": "XL" }, { "id": 13, "size": "XXL" }],
+      "colors": [{ "id": 7, "name": "Black", "hex_code": "#111111" }, { "id": 8, "name": "Olive", "hex_code": "#4A5D23" }, { "id": 9, "name": "Burgundy", "hex_code": "#800020" }],
+      "created_at": "2026-01-10T00:00:00Z"
+    },
+    {
+      "id": 4, "category_id": 1, "name": "Striped Oxford Tee", "slug": "striped-oxford-tee",
+      "description": "A relaxed take on the classic Oxford. Soft garment-washed cotton with subtle stripe pattern.",
+      "short_description": "Garment-washed striped cotton tee",
+      "price": 54.99, "discount_price": 39.99, "effective_price": 39.99,
+      "has_discount": true, "discount_percent": 27, "stock": 5, "sku": "VAL-TS-004",
+      "image": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=600",
+      "is_featured": false, "is_trending": false, "is_active": true,
+      "images": [
+        { "id": 8, "image": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=600", "sort_order": 0 }
+      ],
+      "sizes": [{ "id": 14, "size": "S" }, { "id": 15, "size": "M" }, { "id": 16, "size": "L" }],
+      "colors": [{ "id": 10, "name": "Navy Stripe", "hex_code": "#1B2838" }, { "id": 11, "name": "Burgundy Stripe", "hex_code": "#800020" }],
+      "created_at": "2026-01-15T00:00:00Z"
+    },
+    {
+      "id": 5, "category_id": 1, "name": "Athletic Performance Tee", "slug": "athletic-performance-tee",
+      "description": "Moisture-wicking performance fabric with four-way stretch. Designed for the active man.",
+      "short_description": "Performance moisture-wicking tee",
+      "price": 64.99, "discount_price": null, "effective_price": 64.99,
+      "has_discount": false, "discount_percent": 0, "stock": 20, "sku": "VAL-TS-005",
+      "image": "https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=600",
+      "is_featured": false, "is_trending": true, "is_active": true,
+      "images": [
+        { "id": 9, "image": "https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=600", "sort_order": 0 }
+      ],
+      "sizes": [{ "id": 17, "size": "S" }, { "id": 18, "size": "M" }, { "id": 19, "size": "L" }, { "id": 20, "size": "XL" }, { "id": 21, "size": "XXL" }],
+      "colors": [{ "id": 12, "name": "Black", "hex_code": "#111111" }, { "id": 13, "name": "Grey", "hex_code": "#6B7280" }],
+      "created_at": "2026-02-01T00:00:00Z"
+    },
+    {
+      "id": 6, "category_id": 1, "name": "Vintage Wash Pocket Tee", "slug": "vintage-wash-pocket-tee",
+      "description": "Pre-washed for a lived-in feel. Classic chest pocket design with VALOR flag label.",
+      "short_description": "Pre-washed pocket tee with flag label",
+      "price": 44.99, "discount_price": null, "effective_price": 44.99,
+      "has_discount": false, "discount_percent": 0, "stock": 0, "sku": "VAL-TS-006",
+      "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600",
+      "is_featured": false, "is_trending": false, "is_active": true,
+      "images": [
+        { "id": 10, "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600", "sort_order": 0 }
+      ],
+      "sizes": [{ "id": 22, "size": "S" }, { "id": 23, "size": "M" }, { "id": 24, "size": "L" }, { "id": 25, "size": "XL" }],
+      "colors": [{ "id": 14, "name": "Black", "hex_code": "#111111" }, { "id": 15, "name": "Khaki", "hex_code": "#C3B091" }, { "id": 16, "name": "Faded Navy", "hex_code": "#2C3E50" }],
+      "created_at": "2026-02-05T00:00:00Z"
+    },
+    {
+      "id": 7, "category_id": 2, "name": "Valor Slim Fit Oxford", "slug": "valor-slim-fit-oxford",
+      "description": "The quintessential Oxford shirt reimagined with a modern slim fit. Premium pinpoint cotton with button-down collar.",
+      "short_description": "Modern slim fit pinpoint Oxford",
+      "price": 119.99, "discount_price": null, "effective_price": 119.99,
+      "has_discount": false, "discount_percent": 0, "stock": 15, "sku": "VAL-SH-001",
+      "image": "https://images.unsplash.com/photo-1598033129183-c4f50c736e10?w=600",
+      "is_featured": true, "is_trending": false, "is_active": true,
+      "images": [
+        { "id": 11, "image": "https://images.unsplash.com/photo-1598033129183-c4f50c736e10?w=600", "sort_order": 0 },
+        { "id": 12, "image": "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=600", "sort_order": 1 }
+      ],
+      "sizes": [{ "id": 26, "size": "S" }, { "id": 27, "size": "M" }, { "id": 28, "size": "L" }, { "id": 29, "size": "XL" }],
+      "colors": [{ "id": 17, "name": "White", "hex_code": "#FFFFFF" }, { "id": 18, "name": "Light Blue", "hex_code": "#A8C8E8" }, { "id": 19, "name": "Pink", "hex_code": "#D4A5A5" }],
+      "created_at": "2026-01-03T00:00:00Z"
+    },
+    {
+      "id": 8, "category_id": 2, "name": "Linen Resort Shirt", "slug": "linen-resort-shirt",
+      "description": "Pure Belgian linen with a relaxed camp collar. Perfect for warm-weather sophistication.",
+      "short_description": "Pure linen camp collar shirt",
+      "price": 139.99, "discount_price": 99.99, "effective_price": 99.99,
+      "has_discount": true, "discount_percent": 29, "stock": 8, "sku": "VAL-SH-002",
+      "image": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600",
+      "is_featured": false, "is_trending": true, "is_active": true,
+      "images": [
+        { "id": 13, "image": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600", "sort_order": 0 }
+      ],
+      "sizes": [{ "id": 30, "size": "S" }, { "id": 31, "size": "M" }, { "id": 32, "size": "L" }, { "id": 33, "size": "XL" }],
+      "colors": [{ "id": 20, "name": "White", "hex_code": "#FFFFFF" }, { "id": 21, "name": "Sage", "hex_code": "#8A9A7B" }, { "id": 22, "name": "Sand", "hex_code": "#D4C5A9" }],
+      "created_at": "2026-01-20T00:00:00Z"
+    },
+    {
+      "id": 9, "category_id": 2, "name": "Black Label Dress Shirt", "slug": "black-label-dress-shirt",
+      "description": "Our finest dress shirt in Italian cotton poplin. Hidden button placket, mother-of-pearl buttons, and a tailored fit.",
+      "short_description": "Italian poplin dress shirt",
+      "price": 189.99, "discount_price": null, "effective_price": 189.99,
+      "has_discount": false, "discount_percent": 0, "stock": 10, "sku": "VAL-SH-003",
+      "image": "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=600",
+      "is_featured": true, "is_trending": false, "is_active": true,
+      "images": [
+        { "id": 14, "image": "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=600", "sort_order": 0 }
+      ],
+      "sizes": [{ "id": 34, "size": "S" }, { "id": 35, "size": "M" }, { "id": 36, "size": "L" }, { "id": 37, "size": "XL" }, { "id": 38, "size": "XXL" }],
+      "colors": [{ "id": 23, "name": "White", "hex_code": "#FFFFFF" }, { "id": 24, "name": "Black", "hex_code": "#111111" }],
+      "created_at": "2026-02-10T00:00:00Z"
+    },
+    {
+      "id": 10, "category_id": 2, "name": "Flannel Work Shirt", "slug": "flannel-work-shirt",
+      "description": "Heavyweight brushed flannel with a classic work-shirt silhouette. Double-stitched seams for durability.",
+      "short_description": "Heavy brushed flannel work shirt",
+      "price": 99.99, "discount_price": 79.99, "effective_price": 79.99,
+      "has_discount": true, "discount_percent": 20, "stock": 3, "sku": "VAL-SH-004",
+      "image": "https://images.unsplash.com/photo-1598033129183-c4f50c736e10?w=600",
+      "is_featured": false, "is_trending": false, "is_active": true,
+      "images": [
+        { "id": 15, "image": "https://images.unsplash.com/photo-1598033129183-c4f50c736e10?w=600", "sort_order": 0 }
+      ],
+      "sizes": [{ "id": 39, "size": "M" }, { "id": 40, "size": "L" }, { "id": 41, "size": "XL" }],
+      "colors": [{ "id": 25, "name": "Red Plaid", "hex_code": "#8B0000" }, { "id": 26, "name": "Green Plaid", "hex_code": "#2E4A2E" }],
+      "created_at": "2026-02-15T00:00:00Z"
+    },
+    {
+      "id": 11, "category_id": 3, "name": "Slim Stretch Denim", "slug": "slim-stretch-denim",
+      "description": "Premium Japanese selvedge denim with 2% elastane for comfort. Slim tapered fit with a modern rise.",
+      "short_description": "Japanese selvedge slim stretch denim",
+      "price": 169.99, "discount_price": null, "effective_price": 169.99,
+      "has_discount": false, "discount_percent": 0, "stock": 12, "sku": "VAL-JN-001",
+      "image": "https://images.unsplash.com/photo-1542272604-787c3835535d?w=600",
+      "is_featured": true, "is_trending": true, "is_active": true,
+      "images": [
+        { "id": 16, "image": "https://images.unsplash.com/photo-1542272604-787c3835535d?w=600", "sort_order": 0 },
+        { "id": 17, "image": "https://images.unsplash.com/photo-1605518216938-7c31b7b14ad0?w=600", "sort_order": 1 }
+      ],
+      "sizes": [{ "id": 42, "size": "28" }, { "id": 43, "size": "30" }, { "id": 44, "size": "32" }, { "id": 45, "size": "34" }, { "id": 46, "size": "36" }],
+      "colors": [{ "id": 27, "name": "Indigo", "hex_code": "#3F51B5" }, { "id": 28, "name": "Black", "hex_code": "#111111" }],
+      "created_at": "2026-01-08T00:00:00Z"
+    },
+    {
+      "id": 12, "category_id": 3, "name": "Relaxed Raw Denim", "slug": "relaxed-raw-denim",
+      "description": "Unwashed raw denim with a straight leg and relaxed fit. Will develop unique fading patterns over time.",
+      "short_description": "Unwashed raw straight-leg denim",
+      "price": 199.99, "discount_price": 159.99, "effective_price": 159.99,
+      "has_discount": true, "discount_percent": 20, "stock": 7, "sku": "VAL-JN-002",
+      "image": "https://images.unsplash.com/photo-1605518216938-7c31b7b14ad0?w=600",
+      "is_featured": false, "is_trending": false, "is_active": true,
+      "images": [
+        { "id": 18, "image": "https://images.unsplash.com/photo-1605518216938-7c31b7b14ad0?w=600", "sort_order": 0 }
+      ],
+      "sizes": [{ "id": 47, "size": "30" }, { "id": 48, "size": "32" }, { "id": 49, "size": "34" }, { "id": 50, "size": "36" }],
+      "colors": [{ "id": 29, "name": "Raw Indigo", "hex_code": "#1A237E" }],
+      "created_at": "2026-02-20T00:00:00Z"
+    },
+    {
+      "id": 13, "category_id": 3, "name": "Distressed Biker Denim", "slug": "distressed-biker-denim",
+      "description": "Bold distressed denim with biker-inspired stitching and subtle fading. Heavyweight 14oz cotton.",
+      "short_description": "14oz distressed biker style jeans",
+      "price": 159.99, "discount_price": null, "effective_price": 159.99,
+      "has_discount": false, "discount_percent": 0, "stock": 4, "sku": "VAL-JN-003",
+      "image": "https://images.unsplash.com/photo-1542272604-787c3835535d?w=600",
+      "is_featured": false, "is_trending": true, "is_active": true,
+      "images": [
+        { "id": 19, "image": "https://images.unsplash.com/photo-1542272604-787c3835535d?w=600", "sort_order": 0 }
+      ],
+      "sizes": [{ "id": 51, "size": "30" }, { "id": 52, "size": "32" }, { "id": 53, "size": "34" }],
+      "colors": [{ "id": 30, "name": "Dark Grey", "hex_code": "#2F4F4F" }],
+      "created_at": "2026-02-25T00:00:00Z"
+    },
+    {
+      "id": 14, "category_id": 4, "name": "Valor Chino Pant", "slug": "valor-chino-pant",
+      "description": "The perfect chino in stretch cotton twill. Tapered leg with a mid-rise waist. Works from boardroom to bar.",
+      "short_description": "Stretch cotton twill chino",
+      "price": 109.99, "discount_price": 89.99, "effective_price": 89.99,
+      "has_discount": true, "discount_percent": 18, "stock": 22, "sku": "VAL-PT-001",
+      "image": "https://images.unsplash.com/photo-1594938291221-94f2c3e1bda2?w=600",
+      "is_featured": true, "is_trending": true, "is_active": true,
+      "images": [
+        { "id": 20, "image": "https://images.unsplash.com/photo-1594938291221-94f2c3e1bda2?w=600", "sort_order": 0 }
+      ],
+      "sizes": [{ "id": 54, "size": "28" }, { "id": 55, "size": "30" }, { "id": 56, "size": "32" }, { "id": 57, "size": "34" }, { "id": 58, "size": "36" }],
+      "colors": [{ "id": 31, "name": "Khaki", "hex_code": "#C3B091" }, { "id": 32, "name": "Navy", "hex_code": "#1B2838" }, { "id": 33, "name": "Olive", "hex_code": "#4A5D23" }, { "id": 34, "name": "Stone", "hex_code": "#A89F91" }],
+      "created_at": "2026-01-06T00:00:00Z"
+    },
+    {
+      "id": 15, "category_id": 4, "name": "Wool Trousers", "slug": "wool-trousers",
+      "description": "Italian wool-blend trousers with a sharp crease. Side adjusters and zip fly. The foundation of any refined wardrobe.",
+      "short_description": "Italian wool dress trousers",
+      "price": 219.99, "discount_price": null, "effective_price": 219.99,
+      "has_discount": false, "discount_percent": 0, "stock": 9, "sku": "VAL-PT-002",
+      "image": "https://images.unsplash.com/photo-1594938291221-94f2c3e1bda2?w=600",
+      "is_featured": true, "is_trending": false, "is_active": true,
+      "images": [
+        { "id": 21, "image": "https://images.unsplash.com/photo-1594938291221-94f2c3e1bda2?w=600", "sort_order": 0 }
+      ],
+      "sizes": [{ "id": 59, "size": "30" }, { "id": 60, "size": "32" }, { "id": 61, "size": "34" }, { "id": 62, "size": "36" }],
+      "colors": [{ "id": 35, "name": "Charcoal", "hex_code": "#36454F" }, { "id": 36, "name": "Navy", "hex_code": "#1B2838" }],
+      "created_at": "2026-01-12T00:00:00Z"
+    },
+    {
+      "id": 16, "category_id": 4, "name": "Cargo Jogger Pant", "slug": "cargo-jogger-pant",
+      "description": "Technical cotton-blend cargo joggers with an elasticated hem. Multiple pocket utility meets street-ready style.",
+      "short_description": "Tech cotton cargo joggers",
+      "price": 94.99, "discount_price": null, "effective_price": 94.99,
+      "has_discount": false, "discount_percent": 0, "stock": 14, "sku": "VAL-PT-003",
+      "image": "https://images.unsplash.com/photo-1594938291221-94f2c3e1bda2?w=600",
+      "is_featured": false, "is_trending": true, "is_active": true,
+      "images": [
+        { "id": 22, "image": "https://images.unsplash.com/photo-1594938291221-94f2c3e1bda2?w=600", "sort_order": 0 }
+      ],
+      "sizes": [{ "id": 63, "size": "S" }, { "id": 64, "size": "M" }, { "id": 65, "size": "L" }, { "id": 66, "size": "XL" }],
+      "colors": [{ "id": 37, "name": "Black", "hex_code": "#111111" }, { "id": 38, "name": "Grey", "hex_code": "#6B7280" }, { "id": 39, "name": "Olive", "hex_code": "#4A5D23" }],
+      "created_at": "2026-02-08T00:00:00Z"
+    },
+    {
+      "id": 17, "category_id": 5, "name": "Leather Biker Jacket", "slug": "leather-biker-jacket",
+      "description": "Full-grain lambskin leather jacket with asymmetric zip. Quilted shoulders and snap-down lapels. A timeless investment.",
+      "short_description": "Full-grain lambskin biker jacket",
+      "price": 899.99, "discount_price": 699.99, "effective_price": 699.99,
+      "has_discount": true, "discount_percent": 22, "stock": 3, "sku": "VAL-OW-001",
+      "image": "https://images.unsplash.com/photo-1520975954732-35dd22299614?w=600",
+      "is_featured": true, "is_trending": true, "is_active": true,
+      "images": [
+        { "id": 23, "image": "https://images.unsplash.com/photo-1520975954732-35dd22299614?w=600", "sort_order": 0 },
+        { "id": 24, "image": "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600", "sort_order": 1 }
+      ],
+      "sizes": [{ "id": 67, "size": "S" }, { "id": 68, "size": "M" }, { "id": 69, "size": "L" }, { "id": 70, "size": "XL" }],
+      "colors": [{ "id": 40, "name": "Black", "hex_code": "#111111" }, { "id": 41, "name": "Brown", "hex_code": "#8B4513" }],
+      "created_at": "2026-01-18T00:00:00Z"
+    },
+    {
+      "id": 18, "category_id": 5, "name": "Wool Peacoat", "slug": "wool-peacoat",
+      "description": "Double-breasted peacoat in Italian wool melton. Notch lapels, side-entry pockets, and a warm quilted lining.",
+      "short_description": "Italian wool double-breasted peacoat",
+      "price": 549.99, "discount_price": null, "effective_price": 549.99,
+      "has_discount": false, "discount_percent": 0, "stock": 6, "sku": "VAL-OW-002",
+      "image": "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600",
+      "is_featured": false, "is_trending": false, "is_active": true,
+      "images": [
+        { "id": 25, "image": "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600", "sort_order": 0 }
+      ],
+      "sizes": [{ "id": 71, "size": "S" }, { "id": 72, "size": "M" }, { "id": 73, "size": "L" }, { "id": 74, "size": "XL" }],
+      "colors": [{ "id": 42, "name": "Camel", "hex_code": "#C19A6B" }, { "id": 43, "name": "Navy", "hex_code": "#1B2838" }],
+      "created_at": "2026-01-22T00:00:00Z"
+    },
+    {
+      "id": 19, "category_id": 5, "name": "Bomber Jacket", "slug": "bomber-jacket",
+      "description": "Satin nylon bomber with ribbed cuffs and hem. VALOR embroidery on chest. Lightweight yet insulating.",
+      "short_description": "Satin nylon embroidered bomber",
+      "price": 329.99, "discount_price": 279.99, "effective_price": 279.99,
+      "has_discount": true, "discount_percent": 15, "stock": 11, "sku": "VAL-OW-003",
+      "image": "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600",
+      "is_featured": true, "is_trending": true, "is_active": true,
+      "images": [
+        { "id": 26, "image": "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600", "sort_order": 0 }
+      ],
+      "sizes": [{ "id": 75, "size": "S" }, { "id": 76, "size": "M" }, { "id": 77, "size": "L" }, { "id": 78, "size": "XL" }],
+      "colors": [{ "id": 44, "name": "Black", "hex_code": "#111111" }, { "id": 45, "name": "Olive", "hex_code": "#4A5D23" }, { "id": 46, "name": "Navy", "hex_code": "#1B2838" }],
+      "created_at": "2026-02-12T00:00:00Z"
+    },
+    {
+      "id": 20, "category_id": 6, "name": "Valor Leather Sneaker", "slug": "valor-leather-sneaker",
+      "description": "Minimalist Italian leather sneaker with a cup sole. Hand-stitched upper with gold-tone VALOR branding.",
+      "short_description": "Italian leather minimalist sneaker",
+      "price": 249.99, "discount_price": null, "effective_price": 249.99,
+      "has_discount": false, "discount_percent": 0, "stock": 16, "sku": "VAL-SH-001",
+      "image": "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600",
+      "is_featured": true, "is_trending": true, "is_active": true,
+      "images": [
+        { "id": 27, "image": "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600", "sort_order": 0 },
+        { "id": 28, "image": "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600", "sort_order": 1 }
+      ],
+      "sizes": [{ "id": 79, "size": "8" }, { "id": 80, "size": "9" }, { "id": 81, "size": "10" }, { "id": 82, "size": "11" }, { "id": 83, "size": "12" }],
+      "colors": [{ "id": 47, "name": "White", "hex_code": "#FFFFFF" }, { "id": 48, "name": "Black", "hex_code": "#111111" }],
+      "created_at": "2026-01-14T00:00:00Z"
+    },
+    {
+      "id": 21, "category_id": 6, "name": "Chelsea Boot", "slug": "chelsea-boot",
+      "description": "Polished calfskin Chelsea boot with a sleek silhouette. Elastic gusset and pull tab for easy wear.",
+      "short_description": "Calfskin elastic Chelsea boot",
+      "price": 389.99, "discount_price": 329.99, "effective_price": 329.99,
+      "has_discount": true, "discount_percent": 15, "stock": 7, "sku": "VAL-SH-002",
+      "image": "https://images.unsplash.com/photo-1638247025967-b4e38f787b76?w=600",
+      "is_featured": false, "is_trending": true, "is_active": true,
+      "images": [
+        { "id": 29, "image": "https://images.unsplash.com/photo-1638247025967-b4e38f787b76?w=600", "sort_order": 0 }
+      ],
+      "sizes": [{ "id": 84, "size": "8" }, { "id": 85, "size": "9" }, { "id": 86, "size": "10" }, { "id": 87, "size": "11" }],
+      "colors": [{ "id": 49, "name": "Black", "hex_code": "#111111" }, { "id": 50, "name": "Tan", "hex_code": "#D2B48C" }],
+      "created_at": "2026-02-02T00:00:00Z"
+    },
+    {
+      "id": 22, "category_id": 6, "name": "Lace Up Dress Shoe", "slug": "lace-up-dress-shoe",
+      "description": "Oxford-style cap toe in burnished calf leather. Leather sole with rubber heel insert. Made in Italy.",
+      "short_description": "Italian burnished calf oxford",
+      "price": 459.99, "discount_price": null, "effective_price": 459.99,
+      "has_discount": false, "discount_percent": 0, "stock": 5, "sku": "VAL-SH-003",
+      "image": "https://images.unsplash.com/photo-1614252369475-531eba835eb1?w=600",
+      "is_featured": false, "is_trending": false, "is_active": true,
+      "images": [
+        { "id": 30, "image": "https://images.unsplash.com/photo-1614252369475-531eba835eb1?w=600", "sort_order": 0 }
+      ],
+      "sizes": [{ "id": 88, "size": "8" }, { "id": 89, "size": "9" }, { "id": 90, "size": "10" }, { "id": 91, "size": "11" }, { "id": 92, "size": "12" }],
+      "colors": [{ "id": 51, "name": "Black", "hex_code": "#111111" }, { "id": 52, "name": "Burgundy", "hex_code": "#800020" }],
+      "created_at": "2026-02-18T00:00:00Z"
+    },
+    {
+      "id": 23, "category_id": 7, "name": "Chronograph Gold Watch", "slug": "chronograph-gold-watch",
+      "description": "Swiss-made chronograph with a gold-tone case and black ceramic bezel. Sapphire crystal and 100m water resistance.",
+      "short_description": "Swiss gold-tone chronograph",
+      "price": 2899.99, "discount_price": 2399.99, "effective_price": 2399.99,
+      "has_discount": true, "discount_percent": 17, "stock": 2, "sku": "VAL-WT-001",
+      "image": "https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=600",
+      "is_featured": true, "is_trending": false, "is_active": true,
+      "images": [
+        { "id": 31, "image": "https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=600", "sort_order": 0 },
+        { "id": 32, "image": "https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=600", "sort_order": 1 }
+      ],
+      "sizes": [{ "id": 93, "size": "One Size" }],
+      "colors": [{ "id": 53, "name": "Gold/Black", "hex_code": "#D4AF37" }],
+      "created_at": "2026-01-25T00:00:00Z"
+    },
+    {
+      "id": 24, "category_id": 7, "name": "Minimalist Mesh Watch", "slug": "minimalist-mesh-watch",
+      "description": "Ultra-slim stainless steel case with a fine mesh bracelet. Clean dial with no numerals for a pure minimalist look.",
+      "short_description": "Ultra-slim steel mesh watch",
+      "price": 349.99, "discount_price": null, "effective_price": 349.99,
+      "has_discount": false, "discount_percent": 0, "stock": 13, "sku": "VAL-WT-002",
+      "image": "https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=600",
+      "is_featured": false, "is_trending": true, "is_active": true,
+      "images": [
+        { "id": 33, "image": "https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=600", "sort_order": 0 }
+      ],
+      "sizes": [{ "id": 94, "size": "One Size" }],
+      "colors": [{ "id": 54, "name": "Silver", "hex_code": "#C0C0C0" }, { "id": 55, "name": "Black", "hex_code": "#111111" }],
+      "created_at": "2026-02-22T00:00:00Z"
+    },
+    {
+      "id": 25, "category_id": 8, "name": "Genuine Leather Belt", "slug": "genuine-leather-belt",
+      "description": "Full-grain Italian leather belt with a brushed gold buckle. 35mm width. Ages beautifully with wear.",
+      "short_description": "Italian full-grain leather belt",
+      "price": 129.99, "discount_price": null, "effective_price": 129.99,
+      "has_discount": false, "discount_percent": 0, "stock": 20, "sku": "VAL-AC-001",
+      "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600",
+      "is_featured": true, "is_trending": false, "is_active": true,
+      "images": [
+        { "id": 34, "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600", "sort_order": 0 }
+      ],
+      "sizes": [{ "id": 95, "size": "30" }, { "id": 96, "size": "32" }, { "id": 97, "size": "34" }, { "id": 98, "size": "36" }, { "id": 99, "size": "38" }],
+      "colors": [{ "id": 56, "name": "Black", "hex_code": "#111111" }, { "id": 57, "name": "Brown", "hex_code": "#8B4513" }],
+      "created_at": "2026-01-28T00:00:00Z"
+    },
+    {
+      "id": 26, "category_id": 8, "name": "Card Holder Wallet", "slug": "card-holder-wallet",
+      "description": "Minimalist cardholder in pebbled calf leather. 4 card slots with center pocket. RFID blocking.",
+      "short_description": "Pebbled calf leather cardholder",
+      "price": 79.99, "discount_price": 59.99, "effective_price": 59.99,
+      "has_discount": true, "discount_percent": 25, "stock": 28, "sku": "VAL-AC-002",
+      "image": "https://images.unsplash.com/photo-1627123424574-724758594e93?w=600",
+      "is_featured": false, "is_trending": false, "is_active": true,
+      "images": [
+        { "id": 35, "image": "https://images.unsplash.com/photo-1627123424574-724758594e93?w=600", "sort_order": 0 }
+      ],
+      "sizes": [{ "id": 100, "size": "One Size" }],
+      "colors": [{ "id": 58, "name": "Black", "hex_code": "#111111" }, { "id": 59, "name": "Tan", "hex_code": "#D2B48C" }],
+      "created_at": "2026-02-03T00:00:00Z"
+    },
+    {
+      "id": 27, "category_id": 8, "name": "Aviator Sunglasses", "slug": "aviator-sunglasses",
+      "description": "Classic teardrop aviator in lightweight titanium frame. Polarized green lenses with UV400 protection.",
+      "short_description": "Titanium frame polarized aviators",
+      "price": 199.99, "discount_price": null, "effective_price": 199.99,
+      "has_discount": false, "discount_percent": 0, "stock": 17, "sku": "VAL-AC-003",
+      "image": "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600",
+      "is_featured": true, "is_trending": true, "is_active": true,
+      "images": [
+        { "id": 36, "image": "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600", "sort_order": 0 }
+      ],
+      "sizes": [{ "id": 101, "size": "One Size" }],
+      "colors": [{ "id": 60, "name": "Gold/Green", "hex_code": "#D4AF37" }, { "id": 61, "name": "Black/Green", "hex_code": "#111111" }],
+      "created_at": "2026-02-06T00:00:00Z"
+    },
+    {
+      "id": 28, "category_id": 9, "name": "Leather Weekender Bag", "slug": "leather-weekender-bag",
+      "description": "Full-grain leather duffle with brass hardware. Spacious main compartment with shoe bag and zip pockets. A lifetime travel companion.",
+      "short_description": "Full-grain leather travel duffle",
+      "price": 649.99, "discount_price": 549.99, "effective_price": 549.99,
+      "has_discount": true, "discount_percent": 15, "stock": 4, "sku": "VAL-BG-001",
+      "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600",
+      "is_featured": true, "is_trending": true, "is_active": true,
+      "images": [
+        { "id": 37, "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600", "sort_order": 0 }
+      ],
+      "sizes": [{ "id": 102, "size": "One Size" }],
+      "colors": [{ "id": 62, "name": "Brown", "hex_code": "#8B4513" }, { "id": 63, "name": "Black", "hex_code": "#111111" }],
+      "created_at": "2026-02-14T00:00:00Z"
+    },
+    {
+      "id": 29, "category_id": 9, "name": "Backpack Pro", "slug": "backpack-pro",
+      "description": "Technical canvas backpack with padded laptop compartment. Multiple organizers. Water-resistant withYKK zippers.",
+      "short_description": "Technical canvas laptop backpack",
+      "price": 179.99, "discount_price": null, "effective_price": 179.99,
+      "has_discount": false, "discount_percent": 0, "stock": 19, "sku": "VAL-BG-002",
+      "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600",
+      "is_featured": false, "is_trending": true, "is_active": true,
+      "images": [
+        { "id": 38, "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600", "sort_order": 0 }
+      ],
+      "sizes": [{ "id": 103, "size": "One Size" }],
+      "colors": [{ "id": 64, "name": "Black", "hex_code": "#111111" }, { "id": 65, "name": "Olive", "hex_code": "#4A5D23" }],
+      "created_at": "2026-02-28T00:00:00Z"
+    }
+  ],
+  "meta": {
+    "current_page": 1,
+    "last_page": 1,
+    "per_page": 20,
+    "total": 29
+  }
+}

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../app/theme/app_theme.dart';
-import '../../../core/repositories/ai_repository.dart';
+import '../../../core/providers/api_ai_provider.dart';
 
 class AIStylistScreen extends ConsumerStatefulWidget {
   final int productId;
@@ -105,9 +105,9 @@ class _AIStylistScreenState extends ConsumerState<AIStylistScreen> {
     setState(() => _isLoading = true);
     try {
       final result = await ref.read(aiRepositoryProvider).getOutfitRecommendation(widget.productId, _selectedOccasion);
-      setState(() { _recommendation = result; _isLoading = false; });
+      if (mounted) setState(() { _recommendation = result; _isLoading = false; });
     } catch (e) {
-      setState(() => _isLoading = false);
+      if (mounted) setState(() => _isLoading = false);
     }
   }
 

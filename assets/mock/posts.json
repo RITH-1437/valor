@@ -1,0 +1,31 @@
+{
+  "data": {
+    "data": [
+      {
+        "id": 1, "user_id": 1, "content": "New leather jacket day. This biker from VALOR is absolute fire. 🔥", "image": "https://images.unsplash.com/photo-1520975954732-35dd22299614?w=600", "style_tags": "biker,leather,edgy,valormoment", "likes_count": 24, "comments_count": 5, "is_liked": false,
+        "user": { "name": "James Anderson", "avatar": null },
+        "created_at": "2026-06-20T18:30:00Z"
+      },
+      {
+        "id": 2, "user_id": 2, "content": "Summer fit check. Linen shirt and chinos — lightweight and classy.", "image": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600", "style_tags": "summer,linen,chinos,casual", "likes_count": 18, "comments_count": 3, "is_liked": true,
+        "user": { "name": "Marcus Chen", "avatar": null },
+        "created_at": "2026-06-19T14:00:00Z"
+      },
+      {
+        "id": 3, "user_id": 3, "content": "Gold watch, white sneakers, black tee. Sometimes simple is best.", "image": null, "style_tags": "minimal,monochrome,gold", "likes_count": 31, "comments_count": 7, "is_liked": false,
+        "user": { "name": "David Kim", "avatar": null },
+        "created_at": "2026-06-18T11:15:00Z"
+      },
+      {
+        "id": 4, "user_id": 4, "content": "Date night fit. The Oxford shirt never fails.", "image": "https://images.unsplash.com/photo-1598033129183-c4f50c736e10?w=600", "style_tags": "datenight,oxford,classic", "likes_count": 12, "comments_count": 2, "is_liked": false,
+        "user": { "name": "Alex Thompson", "avatar": null },
+        "created_at": "2026-06-17T20:00:00Z"
+      },
+      {
+        "id": 5, "user_id": 5, "content": "Office ready. Wool trousers and a crisp dress shirt. The Black Label fit is unmatched.", "image": null, "style_tags": "office,formal,dressshirt", "likes_count": 15, "comments_count": 4, "is_liked": true,
+        "user": { "name": "Ryan Parker", "avatar": null },
+        "created_at": "2026-06-16T08:45:00Z"
+      }
+    ]
+  }
+}

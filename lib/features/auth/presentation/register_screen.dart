@@ -36,6 +36,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
     final authState = ref.watch(authProvider);
 
     ref.listen<AuthState>(authProvider, (prev, next) {
+      if (!mounted) return;
       if (next.status == AuthStatus.authenticated) {
         context.go('/home');
       } else if (next.status == AuthStatus.error && next.error != null) {

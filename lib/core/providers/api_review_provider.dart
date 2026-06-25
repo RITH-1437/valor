@@ -1,9 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../data/mock_repositories.dart';
 import '../models/api_review.dart';
+import '../network/api_client.dart' show ApiClient, ApiMode;
 import '../repositories/review_repository.dart';
 
 final reviewRepositoryProvider = Provider<ReviewRepository>((ref) {
-  return ReviewRepository();
+  return ApiClient.apiMode == ApiMode.live ? ApiReviewRepository() : MockReviewRepository();
 });
 
 class ReviewState {

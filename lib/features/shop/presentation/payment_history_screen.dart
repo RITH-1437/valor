@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../app/theme/app_theme.dart';
-import '../../../core/repositories/payment_repository.dart';
+import '../../../core/providers/api_payment_provider.dart';
 import '../../../core/models/api_payment.dart';
 import '../../../shared/widgets/empty_state.dart';
 
@@ -83,7 +83,7 @@ class PaymentHistoryScreen extends ConsumerWidget {
 
   IconData _providerIcon(String provider) {
     switch (provider) {
-      case 'stripe': return Icons.credit_card;
+      case 'stripe': return Icons.credit_card_rounded;
       case 'paypal': return Icons.account_balance_wallet;
       case 'cod': return Icons.money;
       default: return Icons.payment;

@@ -32,10 +32,10 @@ class SettingsScreen extends ConsumerWidget {
             // Account section
             const Text('Account', style: TextStyle(color: AppTheme.gold, fontSize: 12, fontWeight: FontWeight.w700, letterSpacing: 1)),
             const SizedBox(height: 12),
-            _menuItem(Icons.person_outline, 'Edit Profile', () {}),
+            _menuItem(Icons.edit_outlined, 'Edit Profile', () {}),
             _menuItem(Icons.lock_outline, 'Change Password', () {}),
             _menuItem(Icons.location_on_outlined, 'Shipping Addresses', () => context.push('/addresses')),
-            _menuItem(Icons.payment_outlined, 'Payment History', () => context.push('/payment-history')),
+            _menuItem(Icons.credit_card_rounded, 'Payment History', () => context.push('/payment-history')),
             const SizedBox(height: 24),
 
             // Support
@@ -61,7 +61,7 @@ class SettingsScreen extends ConsumerWidget {
                     await ref.read(authProvider.notifier).logout();
                     if (context.mounted) context.go('/login');
                   },
-                  icon: const Icon(Icons.logout, color: Colors.redAccent),
+                  icon: const Icon(Icons.logout_rounded, color: Colors.redAccent),
                   label: const Text('Sign Out', style: TextStyle(color: Colors.redAccent)),
                   style: OutlinedButton.styleFrom(
                     side: const BorderSide(color: Colors.redAccent),

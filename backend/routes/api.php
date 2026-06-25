@@ -47,6 +47,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/auth/logout', [AuthController::class, 'logout']);
     Route::get('/auth/profile', [AuthController::class, 'profile']);
     Route::put('/auth/profile', [AuthController::class, 'updateProfile']);
+    Route::post('/auth/avatar', [AuthController::class, 'uploadAvatar']);
+    Route::delete('/auth/avatar', [AuthController::class, 'deleteAvatar']);
 
     // Wishlist
     Route::get('/wishlist', [WishlistController::class, 'index']);

@@ -1,10 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../data/mock_repositories.dart';
 import '../models/api_cart.dart';
+import '../network/api_client.dart' show ApiClient, ApiMode;
 import '../repositories/cart_repository.dart';
 import 'auth_provider.dart';
 
 final cartRepositoryProvider = Provider<CartRepository>((ref) {
-  return CartRepository();
+  return ApiClient.apiMode == ApiMode.live ? ApiCartRepository() : MockCartRepository();
 });
 
 class CartState {

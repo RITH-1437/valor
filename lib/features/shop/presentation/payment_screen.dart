@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../app/theme/app_theme.dart';
-import '../../../core/repositories/payment_repository.dart';
+import '../../../core/providers/api_payment_provider.dart';
 
 class PaymentScreen extends ConsumerStatefulWidget {
   final int orderId;
@@ -50,7 +50,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
 
             _paymentOption('cod', 'Cash on Delivery', 'Pay when you receive your order', Icons.money),
             const SizedBox(height: 12),
-            _paymentOption('stripe', 'Credit / Debit Card', 'Secure payment via Stripe', Icons.credit_card),
+            _paymentOption('stripe', 'Credit / Debit Card', 'Secure payment via Stripe', Icons.credit_card_rounded),
             const SizedBox(height: 12),
             _paymentOption('paypal', 'PayPal', 'Pay with your PayPal account', Icons.account_balance_wallet),
 
@@ -140,7 +140,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
         );
       }
     } finally {
-      setState(() => _isProcessing = false);
+      if (mounted) setState(() => _isProcessing = false);
     }
   }
 }

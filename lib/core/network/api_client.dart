@@ -2,17 +2,24 @@ import 'package:dio/dio.dart';
 import '../storage/secure_storage_service.dart';
 import 'api_constants.dart';
 
+enum ApiMode { mock, fallback, live }
+
 class ApiClient {
   static final ApiClient _instance = ApiClient._();
   factory ApiClient() => _instance;
   late final Dio dio;
 
+  static ApiMode apiMode = ApiMode.mock;
+
   ApiClient._() {
     dio = Dio(BaseOptions(
       baseUrl: ApiConstants.baseUrl,
-      connectTimeout: const Duration(seconds: 30),
-      receiveTimeout: const Duration(seconds: 30),
-      headers: {'Accept': 'application/json'},
+      connectTimeout: const Duration(seconds: 5),
+      receiveTimeout: const Duration(seconds: 5),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
     ));
 
     dio.interceptors.add(InterceptorsWrapper(

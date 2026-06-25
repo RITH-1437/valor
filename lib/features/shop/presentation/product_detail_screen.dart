@@ -84,15 +84,18 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> {
                       // Main image with zoom
                       GestureDetector(
                         onDoubleTap: () => _showZoomDialog(context, images[_currentImageIndex]),
-                        child: PageView.builder(
-                          itemCount: images.length,
-                          onPageChanged: (i) => setState(() => _currentImageIndex = i),
-                          itemBuilder: (ctx, i) => CachedNetworkImage(
-                            imageUrl: images[i],
-                            width: double.infinity,
-                            fit: BoxFit.cover,
-                            placeholder: (ctx, url) => Container(color: AppTheme.darkGray, child: const Center(child: CircularProgressIndicator(color: AppTheme.gold))),
-                            errorWidget: (ctx, url, err) => Container(color: AppTheme.darkGray, child: const Center(child: Icon(Icons.broken_image, color: AppTheme.gray, size: 40))),
+                        child: Hero(
+                          tag: 'product_${product.id}',
+                          child: PageView.builder(
+                            itemCount: images.length,
+                            onPageChanged: (i) => setState(() => _currentImageIndex = i),
+                            itemBuilder: (ctx, i) => CachedNetworkImage(
+                              imageUrl: images[i],
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                              placeholder: (ctx, url) => Container(color: AppTheme.darkGray, child: const Center(child: CircularProgressIndicator(color: AppTheme.gold))),
+                              errorWidget: (ctx, url, err) => Container(color: AppTheme.darkGray, child: const Center(child: Icon(Icons.broken_image, color: AppTheme.gray, size: 40))),
+                            ),
                           ),
                         ),
                       ),
@@ -365,7 +368,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> {
                           backgroundColor: AppTheme.gold,
                           behavior: SnackBarBehavior.floating,
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                          action: SnackBarAction(label: 'View Cart', textColor: AppTheme.black, onPressed: () => context.push('/cart')),
+                          action: SnackBarAction(label: 'View Cart', textColor: AppTheme.black, onPressed: () => context.go('/cart')),
                         ),
                       );
                     },
@@ -465,7 +468,7 @@ class _ReviewsSection extends ConsumerWidget {
               const Text('Reviews', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w700)),
               const SizedBox(width: 12),
               if (reviewState.totalReviews > 0) ...[
-                const Icon(Icons.star, color: AppTheme.gold, size: 18),
+                const Icon(Icons.star_rounded, color: AppTheme.gold, size: 18),
                 const SizedBox(width: 4),
                 Text('${reviewState.averageRating}', style: const TextStyle(color: AppTheme.gold, fontWeight: FontWeight.w700)),
                 const SizedBox(width: 4),
@@ -489,7 +492,7 @@ class _ReviewsSection extends ConsumerWidget {
                     children: List.generate(5, (i) => GestureDetector(
                       onTap: () => onRatingChanged(i + 1),
                       child: Icon(
-                        i < selectedRating ? Icons.star : Icons.star_border,
+                        i < selectedRating ? Icons.star_rounded : Icons.star_outline_rounded,
                         color: AppTheme.gold,
                         size: 28,
                       ),
@@ -545,7 +548,7 @@ class _ReviewsSection extends ConsumerWidget {
                       const Spacer(),
                       Row(
                         children: List.generate(5, (i) => Icon(
-                          i < review.rating ? Icons.star : Icons.star_border,
+                          i < review.rating ? Icons.star_rounded : Icons.star_outline_rounded,
                           color: AppTheme.gold,
                           size: 14,
                         )),

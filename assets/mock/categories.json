@@ -1,0 +1,13 @@
+{
+  "data": [
+    { "id": 1, "name": "T-Shirts", "slug": "t-shirts", "image": null, "description": "Premium cotton tees for everyday style", "is_active": true, "product_count": 6 },
+    { "id": 2, "name": "Shirts", "slug": "shirts", "image": null, "description": "Tailored shirts for the modern gentleman", "is_active": true, "product_count": 4 },
+    { "id": 3, "name": "Jeans", "slug": "jeans", "image": null, "description": "Denim engineered for fit and durability", "is_active": true, "product_count": 3 },
+    { "id": 4, "name": "Pants", "slug": "pants", "image": null, "description": "Chinos, trousers and casual pants", "is_active": true, "product_count": 3 },
+    { "id": 5, "name": "Outerwear", "slug": "outerwear", "image": null, "description": "Jackets, coats and blazers", "is_active": true, "product_count": 3 },
+    { "id": 6, "name": "Shoes", "slug": "shoes", "image": null, "description": "Footwear from sneakers to dress shoes", "is_active": true, "product_count": 3 },
+    { "id": 7, "name": "Watches", "slug": "watches", "image": null, "description": "Timepieces that make a statement", "is_active": true, "product_count": 2 },
+    { "id": 8, "name": "Accessories", "slug": "accessories", "image": null, "description": "Belts, wallets, and more", "is_active": true, "product_count": 3 },
+    { "id": 9, "name": "Bags", "slug": "bags", "image": null, "description": "Bags and backpacks for every occasion", "is_active": true, "product_count": 2 }
+  ]
+}

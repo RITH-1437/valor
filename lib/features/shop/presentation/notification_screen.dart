@@ -134,7 +134,7 @@ class _NotificationCard extends StatelessWidget {
   IconData _typeIcon(String type) {
     if (type.startsWith('order')) return Icons.shopping_bag_outlined;
     if (type.startsWith('payment')) return Icons.payment;
-    if (type.contains('review')) return Icons.star_outline;
+    if (type.contains('review')) return Icons.star_outline_rounded;
     if (type.contains('stock')) return Icons.inventory_2_outlined;
     return Icons.notifications_outlined;
   }

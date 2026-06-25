@@ -1,0 +1,20 @@
+{
+  "data": [
+    { "id": 1, "user_id": 2, "user_name": "Marcus Chen", "product_id": 1, "rating": 5, "review": "Best t-shirt I've ever owned. The fabric is incredibly soft and the fit is perfect. Will definitely be buying more.", "created_at": "2026-02-10T14:30:00Z" },
+    { "id": 2, "user_id": 3, "user_name": "David Kim", "product_id": 1, "rating": 4, "review": "Great quality but runs slightly large. I'd recommend sizing down.", "created_at": "2026-02-12T09:15:00Z" },
+    { "id": 3, "user_id": 4, "user_name": "Alex Thompson", "product_id": 1, "rating": 5, "review": "The black one goes with everything. Already ordered two more colors.", "created_at": "2026-02-15T16:45:00Z" },
+    { "id": 4, "user_id": 2, "user_name": "Marcus Chen", "product_id": 2, "rating": 5, "review": "The gold buttons really elevate this polo. Got compliments the first time I wore it.", "created_at": "2026-02-18T11:20:00Z" },
+    { "id": 5, "user_id": 5, "user_name": "Ryan Parker", "product_id": 2, "rating": 3, "review": "Nice shirt but the fit is a bit boxy for my taste. Quality is excellent though.", "created_at": "2026-02-20T08:30:00Z" },
+    { "id": 6, "user_id": 3, "user_name": "David Kim", "product_id": 7, "rating": 5, "review": "Perfect Oxford shirt. The slim fit is exactly what I was looking for.", "created_at": "2026-02-22T13:00:00Z" },
+    { "id": 7, "user_id": 4, "user_name": "Alex Thompson", "product_id": 11, "rating": 4, "review": "Great jeans. The stretch makes them super comfortable for all-day wear.", "created_at": "2026-02-25T10:10:00Z" },
+    { "id": 8, "user_id": 5, "user_name": "Ryan Parker", "product_id": 11, "rating": 5, "review": "Finally, jeans that fit well off the rack. The indigo color is beautiful.", "created_at": "2026-02-28T15:45:00Z" },
+    { "id": 9, "user_id": 2, "user_name": "Marcus Chen", "product_id": 14, "rating": 4, "review": "My new favorite chinos. The stretch cotton is game changing.", "created_at": "2026-03-01T09:30:00Z" },
+    { "id": 10, "user_id": 3, "user_name": "David Kim", "product_id": 17, "rating": 5, "review": "Absolute stunner of a jacket. The leather quality is phenomenal and the fit is spot on.", "created_at": "2026-03-03T17:20:00Z" },
+    { "id": 11, "user_id": 4, "user_name": "Alex Thompson", "product_id": 20, "rating": 5, "review": "Most comfortable sneakers I own. Worth every penny.", "created_at": "2026-03-05T12:00:00Z" },
+    { "id": 12, "user_id": 5, "user_name": "Ryan Parker", "product_id": 23, "rating": 5, "review": "A stunning timepiece. The gold accent matches VALOR's aesthetic perfectly.", "created_at": "2026-03-08T14:15:00Z" }
+  ],
+  "meta": {
+    "average_rating": 4.5,
+    "total_reviews": 12
+  }
+}

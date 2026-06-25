@@ -1,11 +1,14 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../network/api_client.dart';
 
-final aiRepositoryProvider = Provider<AIRepository>((ref) => AIRepository());
+abstract class AIRepository {
+  Future<Map<String, dynamic>> recommendSize({required int heightCm, required int weightKg, String? bodyType});
+  Future<Map<String, dynamic>> getOutfitRecommendation(int productId, String occasion);
+}
 
-class AIRepository {
+class ApiAIRepository implements AIRepository {
   final _client = ApiClient().dio;
 
+  @override
   Future<Map<String, dynamic>> recommendSize({
     required int heightCm,
     required int weightKg,
@@ -19,6 +22,7 @@ class AIRepository {
     return response.data['data'];
   }
 
+  @override
   Future<Map<String, dynamic>> getOutfitRecommendation(int productId, String occasion) async {
     final response = await _client.post('/products/$productId/stylist', data: {
       'occasion': occasion,

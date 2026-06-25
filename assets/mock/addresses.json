@@ -1,0 +1,18 @@
+{
+  "data": [
+    {
+      "id": 1, "user_id": 1, "full_name": "James Anderson", "phone": "+1-555-0123",
+      "country": "Vietnam", "city": "Ho Chi Minh City", "district": "District 1", "street": "124 King Street",
+      "postal_code": "700000", "is_default": true,
+      "full_address": "124 King Street, District 1, Ho Chi Minh City, Vietnam",
+      "created_at": "2026-05-01T00:00:00Z"
+    },
+    {
+      "id": 2, "user_id": 1, "full_name": "James Anderson", "phone": "+1-555-0123",
+      "country": "United States", "city": "New York", "district": "Manhattan", "street": "456 Park Avenue, Apt 12B",
+      "postal_code": "10022", "is_default": false,
+      "full_address": "456 Park Avenue, Apt 12B, Manhattan, New York, United States",
+      "created_at": "2026-05-10T00:00:00Z"
+    }
+  ]
+}

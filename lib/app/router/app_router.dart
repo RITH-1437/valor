@@ -5,6 +5,8 @@ import '../../features/auth/presentation/login_screen.dart';
 import '../../features/auth/presentation/register_screen.dart';
 import '../../features/auth/presentation/splash_screen.dart';
 import '../../features/home/presentation/home_screen.dart';
+import '../../features/map/presentation/branch_map_screen.dart';
+import '../../features/onboarding/presentation/onboarding_screen.dart';
 import '../../features/shop/presentation/product_list_screen.dart';
 import '../../features/shop/presentation/product_detail_screen.dart';
 import '../../features/shop/presentation/cart_screen.dart';
@@ -25,29 +27,50 @@ final GoRouter appRouter = GoRouter(
   navigatorKey: _rootNavigatorKey,
   initialLocation: '/',
   routes: [
-    GoRoute(path: '/', builder: (context, state) => const SplashScreen()),
-    GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
-    GoRoute(path: '/register', builder: (context, state) => const RegisterScreen()),
-    ShellRoute(
-      builder: (context, state, child) => MainShell(child: child),
-      routes: [
-        GoRoute(path: '/home', pageBuilder: (context, state) => NoTransitionPage(child: const HomeScreen())),
-        GoRoute(path: '/shop', pageBuilder: (context, state) {
-          final category = state.uri.queryParameters['category'];
-          return NoTransitionPage(child: ProductListScreen(category: category, title: category != null ? '${category.toUpperCase()} Products' : 'Shop All'));
-        }),
-        GoRoute(path: '/wishlist', pageBuilder: (context, state) => NoTransitionPage(child: const WishlistScreen())),
-        GoRoute(path: '/cart', pageBuilder: (context, state) => NoTransitionPage(child: const CartScreen())),
-        GoRoute(path: '/profile', pageBuilder: (context, state) => NoTransitionPage(child: const ProfileScreen())),
+    GoRoute(path: '/onboarding', parentNavigatorKey: _rootNavigatorKey, builder: (context, state) => const OnboardingScreen()),
+    GoRoute(path: '/', parentNavigatorKey: _rootNavigatorKey, builder: (context, state) => const SplashScreen()),
+    GoRoute(path: '/login', parentNavigatorKey: _rootNavigatorKey, builder: (context, state) => const LoginScreen()),
+    GoRoute(path: '/register', parentNavigatorKey: _rootNavigatorKey, builder: (context, state) => const RegisterScreen()),
+    GoRoute(path: '/map', parentNavigatorKey: _rootNavigatorKey, builder: (context, state) => const BranchMapScreen()),
+    StatefulShellRoute.indexedStack(
+      builder: (context, state, navigationShell) => MainShell(navigationShell: navigationShell),
+      branches: [
+        StatefulShellBranch(
+          routes: [
+            GoRoute(path: '/home', builder: (context, state) => const HomeScreen()),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(path: '/shop', builder: (context, state) {
+              final category = state.uri.queryParameters['category'];
+              return ProductListScreen(category: category, title: category != null ? '${category.toUpperCase()} Products' : 'Shop All');
+            }),
+            GoRoute(
+              path: '/product/:slug',
+              builder: (context, state) {
+                final slug = state.pathParameters['slug'] ?? '';
+                return ProductDetailScreen(productId: slug);
+              },
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(path: '/wishlist', builder: (context, state) => const WishlistScreen()),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(path: '/cart', builder: (context, state) => const CartScreen()),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(path: '/profile', builder: (context, state) => const ProfileScreen()),
+          ],
+        ),
       ],
-    ),
-    GoRoute(
-      path: '/product/:slug',
-      parentNavigatorKey: _rootNavigatorKey,
-      builder: (context, state) {
-        final slug = state.pathParameters['slug'] ?? '';
-        return ProductDetailScreen(productId: slug);
-      },
     ),
     GoRoute(path: '/checkout', parentNavigatorKey: _rootNavigatorKey, builder: (context, state) => const CheckoutScreen()),
     GoRoute(path: '/orders', parentNavigatorKey: _rootNavigatorKey, builder: (context, state) => const OrdersScreen()),

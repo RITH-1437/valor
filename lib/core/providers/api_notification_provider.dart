@@ -1,10 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../data/mock_repositories.dart';
 import '../models/api_notification.dart';
+import '../network/api_client.dart' show ApiClient, ApiMode;
 import '../repositories/notification_repository.dart';
 import 'auth_provider.dart';
 
 final notificationRepositoryProvider = Provider<NotificationRepository>((ref) {
-  return NotificationRepository();
+  return ApiClient.apiMode == ApiMode.live ? ApiNotificationRepository() : MockNotificationRepository();
 });
 
 class NotificationNotifier extends AsyncNotifier<List<NotificationModel>> {
@@ -28,20 +30,26 @@ class NotificationNotifier extends AsyncNotifier<List<NotificationModel>> {
   }
 
   Future<void> markAsRead(int id) async {
-    await ref.read(notificationRepositoryProvider).markAsRead(id);
-    _unreadCount = (_unreadCount - 1).clamp(0, 999);
-    ref.invalidateSelf();
+    try {
+      await ref.read(notificationRepositoryProvider).markAsRead(id);
+      _unreadCount = (_unreadCount - 1).clamp(0, 999);
+      ref.invalidateSelf();
+    } catch (_) {}
   }
 
   Future<void> markAllAsRead() async {
-    await ref.read(notificationRepositoryProvider).markAllAsRead();
-    _unreadCount = 0;
-    ref.invalidateSelf();
+    try {
+      await ref.read(notificationRepositoryProvider).markAllAsRead();
+      _unreadCount = 0;
+      ref.invalidateSelf();
+    } catch (_) {}
   }
 
   Future<void> delete(int id) async {
-    await ref.read(notificationRepositoryProvider).delete(id);
-    ref.invalidateSelf();
+    try {
+      await ref.read(notificationRepositoryProvider).delete(id);
+      ref.invalidateSelf();
+    } catch (_) {}
   }
 }
 

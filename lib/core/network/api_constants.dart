@@ -5,8 +5,7 @@ class ApiConstants {
     const env = String.fromEnvironment('API_BASE_URL', defaultValue: '');
     if (env.isNotEmpty) return env;
 
-    // Default: Android emulator localhost
-    return 'http://10.0.2.2:8000/api';
+    return 'http://localhost:8000/api';
   }
 
   static const String login = '/auth/login';
@@ -20,4 +19,6 @@ class ApiConstants {
   static const String wishlist = '/wishlist';
   static const String cart = '/cart';
   static const String orders = '/orders';
+  static const String avatarUpload = '/auth/avatar';
+  static const String avatarDelete = '/auth/avatar';
 }

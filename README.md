@@ -1,363 +1,268 @@
-# VALOR — Luxury Men's Fashion Platform
+<p align="center">
+  <img src="valor_logo.svg" alt="VALOR logo" width="120" />
+</p>
 
-A full-stack e-commerce platform for premium men's fashion, built with **Flutter** (frontend) and **Laravel 12** (backend API).
+<h1 align="center">VALOR</h1>
 
----
+<p align="center">
+  A polished full-stack men's fashion commerce app built with Flutter and Laravel.
+</p>
 
-## Features
-
-### Customer Experience
-- **Product Catalog** — Browse 50+ curated products with search, filter, sort, and pagination
-- **Product Detail** — Image carousel with zoom, size/color selection, stock indicators, reviews
-- **Shopping Cart** — Add products with size/color, quantity management, real-time totals
-- **Checkout** — Address selection, payment method, order review, stock validation
-- **Orders** — Order history, tracking timeline, status updates
-- **Wishlist** — Save and manage favorite products
-- **Addresses** — Multiple shipping addresses with default selection
-
-### AI-Powered Features
-- **AI Size Recommendation** — Enter height, weight, body type → get recommended size (S/M/L/XL/XXL)
-- **AI Outfit Stylist** — Select a product and occasion → get outfit suggestions, matching colors, accessories, and styling tips
-
-### Social Features
-- **Fashion Feed** — Create posts with style tags
-- **Follow System** — Follow other users
-- **Likes & Comments** — Engage with posts
-
-### Payments
-- **Cash on Delivery** — Pay when you receive
-- **Stripe** — Credit/debit card payments
-- **PayPal** — Digital wallet payments
-- **Payment History** — Track all transactions
-
-### Notifications
-- **In-App Notifications** — Order updates, payment confirmations, low stock alerts
-- **Email System** — Branded HTML emails for orders, payments, welcome
-- **Read/Unread State** — Mark individual or all notifications as read
-
-### Admin Panel
-- **Dashboard** — Revenue, orders, users, products, reviews, low stock alerts
-- **Product Management** — Full CRUD with images, sizes, colors, featured/trending flags
-- **Category Management** — Create, edit, delete categories
-- **Order Management** — View all orders, filter, search, update status
-- **Customer Management** — View customers and order history
-- **Review Management** — View and delete reviews
-
-### Theme System
-- **Dark Mode** — Premium black/gold aesthetic (default)
-- **Light Mode** — Clean white/gold alternative
-- **System Default** — Follows device setting
-- **Persistent** — Theme preference saved automatically
+<p align="center">
+  <img alt="Flutter" src="https://img.shields.io/badge/Flutter-3.x-02569B?logo=flutter&logoColor=white">
+  <img alt="Laravel" src="https://img.shields.io/badge/Laravel-13-FF2D20?logo=laravel&logoColor=white">
+  <img alt="PHP" src="https://img.shields.io/badge/PHP-8.3+-777BB4?logo=php&logoColor=white">
+  <img alt="Riverpod" src="https://img.shields.io/badge/Riverpod-3.x-40C4FF">
+</p>
 
 ---
+
+## Overview
+
+VALOR is a premium men's fashion platform with a Flutter client and a Laravel API. It covers the full shopping journey: onboarding, product discovery, product detail pages, cart, checkout, payments, order history, wishlist, reviews, profile management, notifications, social style posts, AI recommendations, store locations, and an admin panel.
+
+The Flutter app can run immediately with bundled mock data, then switch to the Laravel backend when you want the full API/database flow.
+
+## Highlights
+
+- Premium catalog experience with categories, featured products, trending products, search, filtering, sorting, images, sizes, colors, stock, and reviews.
+- Shopping flow with wishlist, cart totals, address management, checkout, orders, order details, payment history, and notifications.
+- AI modules for size recommendations and outfit styling by occasion.
+- Social API and feed screen implementation for posts, likes, comments, follows, and style tags.
+- Admin API coverage for dashboards, products, categories, orders, customers, reviews, and payment statistics.
+- Store locator powered by `flutter_map` and OpenStreetMap tiles.
+- Dark and light fashion themes with persisted theme preference.
+- Token authentication with Laravel Sanctum and secure token storage in Flutter.
+- Mock JSON data under `assets/mock/` for fast UI development without a running backend.
 
 ## Tech Stack
 
-### Frontend (Flutter)
-| Technology | Purpose |
-|---|---|
-| Flutter 3.x | Cross-platform UI framework |
-| Riverpod 3.x | State management |
-| GoRouter | Declarative routing |
-| Dio | HTTP client with interceptors |
-| CachedNetworkImage | Image caching & lazy loading |
-| FlutterSecureStorage | Secure token persistence |
-| SharedPreferences | Theme preference storage |
+| Layer | Tools |
+| --- | --- |
+| Mobile/Web App | Flutter, Dart, Material 3 |
+| State & Routing | Riverpod 3, GoRouter |
+| Networking | Dio, Laravel Sanctum bearer tokens |
+| Storage | Flutter Secure Storage, Shared Preferences |
+| Media & Maps | Cached Network Image, Flutter SVG, Image Picker, Flutter Map, LatLong2 |
+| Backend | Laravel 13, PHP 8.3+, Eloquent, API Resources, Middleware |
+| Backend Tooling | Composer, Vite 8, Tailwind CSS 4 |
+| Database | SQLite by default, MySQL-compatible migrations if configured |
 
-### Backend (Laravel 12)
-| Technology | Purpose |
-|---|---|
-| Laravel 12 | PHP API framework |
-| MySQL 8.0 | Database |
-| Laravel Sanctum | Token-based API authentication |
-| Eloquent ORM | Database queries with relationships |
-| Repository Pattern | Data access abstraction |
-| API Resources | Consistent JSON response format |
+## App Features
 
-### Design System
-| Element | Value |
-|---|---|
-| Primary Black | #111111 |
-| Gold Accent | #D4AF37 |
-| White | #FFFFFF |
-| Surface Dark | #1F2937 |
-| Gray | #6B7280 |
-| Typography | SF Pro / System (negative letter-spacing) |
+### Customer App
 
----
+- Onboarding and splash/auth handoff
+- Login, registration, profile, avatar upload, and settings
+- Home dashboard with categories, featured products, and trending products
+- Shop page with search, category filters, price filters, and sorting
+- Product detail pages with gallery data, sizes, colors, reviews, and related commerce actions
+- Wishlist and cart management
+- Checkout with shipping address and payment selection
+- Order history, order detail, and payment history
+- Notification center with unread count and read/delete actions
+- Branch map for store discovery
+
+### AI and Social
+
+- Size recommendation based on height, weight, and body type
+- Outfit stylist suggestions for business, office, formal, street, weekend, date, and wedding occasions
+- Fashion feed, post creation, likes, comments, follows, followers, and following lists
+
+### Admin
+
+- Flutter admin panel with dashboard and product management tabs
+- Admin API endpoints for products, categories, orders, customers, reviews, and dashboard data
+- Product data includes images, sizes, colors, featured flags, and trending flags
+- Role-protected admin middleware
 
 ## Project Structure
 
-```
+```text
 valor/
-├── lib/
-│   ├── app/
-│   │   ├── constants/          # Color palette
-│   │   ├── router/             # GoRouter configuration
-│   │   └── theme/              # Dark + Light themes
-│   ├── core/
-│   │   ├── models/             # 11 API data models
-│   │   ├── network/            # Dio client + API constants
-│   │   ├── providers/          # 10 Riverpod providers
-│   │   ├── repositories/       # 12 API repositories
-│   │   └── storage/            # Secure storage service
-│   ├── features/
-│   │   ├── auth/               # Login, Register, Splash
-│   │   ├── home/               # Home screen
-│   │   └── shop/               # 24 screens (products, cart, checkout, admin, etc.)
-│   └── shared/
-│       └── widgets/            # Reusable components
-│
-└── backend/
-    ├── app/
-    │   ├── Http/Controllers/API/   # 20 controllers
-    │   ├── Http/Middleware/         # Admin middleware
-    │   ├── Http/Resources/         # 10 API resources
-    │   ├── Mail/                   # 3 email templates
-    │   ├── Models/                 # 20 Eloquent models
-    │   └── Services/               # Notification + Cache services
-    ├── database/
-    │   └── migrations/             # 23 migrations
-    ├── routes/
-    │   └── api.php                 # 76 API endpoints
-    └── API_DOCUMENTATION.md        # Complete API reference
+|-- lib/
+|   |-- app/
+|   |   |-- constants/        # Brand colors
+|   |   |-- router/           # GoRouter routes and shell navigation
+|   |   `-- theme/            # Light and dark themes
+|   |-- core/
+|   |   |-- data/             # Mock data source and mock repositories
+|   |   |-- models/           # API models
+|   |   |-- network/          # Dio client and API constants
+|   |   |-- providers/        # Riverpod providers
+|   |   |-- repositories/     # API repository contracts/implementations
+|   |   `-- storage/          # Secure token/user storage
+|   |-- features/
+|   |   |-- auth/             # Splash, login, register
+|   |   |-- home/             # Home screen
+|   |   |-- map/              # Branch map
+|   |   |-- onboarding/       # First-run onboarding
+|   |   `-- shop/             # Catalog, cart, checkout, orders, admin, social
+|   `-- shared/widgets/       # Reusable UI components
+|-- assets/
+|   |-- icons/
+|   |-- images/
+|   `-- mock/                 # Local JSON fixtures for mock mode
+|-- backend/
+|   |-- app/
+|   |   |-- Http/Controllers/API/
+|   |   |-- Http/Middleware/
+|   |   |-- Http/Resources/
+|   |   |-- Mail/
+|   |   |-- Models/
+|   |   `-- Services/
+|   |-- database/
+|   |   |-- migrations/
+|   |   `-- seeders/
+|   |-- routes/api.php
+|   `-- API_DOCUMENTATION.md
+`-- pubspec.yaml
 ```
 
----
-
-## Database Schema (20 Tables)
-
-```
-users ──────────┬── orders ──── order_items
-                ├── wishlists
-                ├── cart_items
-                ├── addresses
-                ├── reviews
-                ├── notifications
-                ├── posts ──── post_likes, post_comments
-                ├── follows
-                ├── size_recommendations
-                └── stylist_sessions
-
-categories ───── products ──── product_images
-                             ├── product_sizes
-                             └── product_colors
-
-orders ────────── payment_transactions
-
-personal_access_tokens (Sanctum)
-sessions
-cache / cache_locks
-jobs / job_batches / failed_jobs
-```
-
----
-
-## Setup Guide
+## Getting Started
 
 ### Prerequisites
-- PHP 8.2+
+
+- Flutter 3.x with Dart SDK compatible with `^3.11.0`
+- PHP 8.3+
 - Composer
-- MySQL 8.0+
-- Flutter 3.x
-- Node.js (for Laravel assets)
+- Node.js and npm
+- SQLite for the fastest local backend setup, or MySQL if you prefer to configure it
 
-### Backend Setup
+### Run The Flutter App With Mock Data
 
-```bash
-cd backend
+The app is currently set to mock mode in `lib/core/network/api_client.dart`:
 
-# Install dependencies
-composer install
-
-# Configure environment
-cp .env.example .env
-php artisan key:generate
-
-# Update .env with your MySQL credentials
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=valor
-DB_USERNAME=root
-DB_PASSWORD=your_password
-
-# Create database
-mysql -u root -p -e "CREATE DATABASE valor CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
-
-# Run migrations and seeders
-php artisan migrate:fresh --seed
-
-# Start server
-php artisan serve --host=0.0.0.0 --port=8000
+```dart
+static ApiMode apiMode = ApiMode.mock;
 ```
 
-### Flutter Setup
+That means you can run the UI without starting Laravel:
 
 ```bash
-cd valor
-
-# Install dependencies
 flutter pub get
-
-# Update API base URL in lib/core/network/api_constants.dart
-# For Android emulator: http://10.0.2.2:8000/api
-# For iOS simulator: http://localhost:8000/api
-# For physical device: http://YOUR_IP:8000/api
-
-# Run the app
 flutter run
 ```
 
-### Create Admin User
+### Run The Laravel API
 
 ```bash
-php artisan tinker
+cd backend
+composer install
+npm install
+cp .env.example .env
+php artisan key:generate
 ```
 
-```php
-\App\Models\User::where('email', 'your@email.com')->update(['role' => 'admin']);
+For the default SQLite setup:
+
+```bash
+touch database/database.sqlite
+php artisan migrate:fresh --seed
+php artisan serve --host=0.0.0.0 --port=8000
 ```
 
----
+If you want MySQL instead, update the `DB_*` values in `backend/.env`, create the database, then run the same migration/seed command.
 
-## API Overview
+### Connect Flutter To The API
 
-**Base URL:** `http://localhost:8000/api`
+Set the API mode to live:
 
-### Authentication
-| Method | Endpoint | Description |
-|---|---|---|
-| POST | `/auth/register` | Register new user |
-| POST | `/auth/login` | Login |
-| POST | `/auth/logout` | Logout (auth) |
-| GET | `/auth/profile` | Get profile (auth) |
-| PUT | `/auth/profile` | Update profile (auth) |
+```dart
+static ApiMode apiMode = ApiMode.live;
+```
 
-### Products
-| Method | Endpoint | Description |
-|---|---|---|
-| GET | `/products` | List (search, filter, sort, paginate) |
-| GET | `/products/featured` | Featured products |
-| GET | `/products/trending` | Trending products |
-| GET | `/products/{slug}` | Product detail |
+Then run Flutter with the API URL for your target device:
 
-### Categories
-| Method | Endpoint | Description |
-|---|---|---|
-| GET | `/categories` | List all with product counts |
-| GET | `/categories/{slug}` | Category detail |
+```bash
+# Desktop/web/iOS simulator
+flutter run --dart-define=API_BASE_URL=http://localhost:8000/api
 
-### Cart & Wishlist
-| Method | Endpoint | Description |
-|---|---|---|
-| GET/POST/PUT/DELETE | `/cart` | Cart CRUD |
-| GET/POST/DELETE | `/wishlist` | Wishlist CRUD |
+# Android emulator
+flutter run --dart-define=API_BASE_URL=http://10.0.2.2:8000/api
 
-### Orders & Payments
-| Method | Endpoint | Description |
-|---|---|---|
-| GET/POST | `/orders` | List/Create orders |
-| GET | `/orders/{id}` | Order detail |
-| POST | `/payments/create` | Create payment |
-| GET | `/payments/history` | Payment history |
+# Physical device on the same network
+flutter run --dart-define=API_BASE_URL=http://YOUR_LOCAL_IP:8000/api
+```
 
-### Social
-| Method | Endpoint | Description |
-|---|---|---|
-| GET | `/feed` | Fashion feed |
-| GET/POST | `/posts` | Posts CRUD |
-| POST | `/posts/{id}/like` | Toggle like |
-| POST | `/posts/{id}/comment` | Add comment |
-| POST | `/users/{id}/follow` | Toggle follow |
+## Main Routes
 
-### AI Features
-| Method | Endpoint | Description |
-|---|---|---|
-| POST | `/ai/size-recommendation` | Get size recommendation |
-| POST | `/products/{id}/stylist` | Get outfit recommendations |
+| Route | Screen |
+| --- | --- |
+| `/` | Splash |
+| `/onboarding` | Onboarding |
+| `/login`, `/register` | Auth |
+| `/home` | Home |
+| `/shop` | Product listing |
+| `/product/:slug` | Product detail |
+| `/wishlist` | Wishlist |
+| `/cart` | Cart |
+| `/checkout` | Checkout |
+| `/orders` | Orders |
+| `/addresses` | Addresses |
+| `/payment-history` | Payment history |
+| `/notifications` | Notifications |
+| `/profile` | Profile |
+| `/settings` | Settings |
+| `/map` | Store locator |
+| `/admin` | Admin panel |
 
-### Admin
-| Method | Endpoint | Description |
-|---|---|---|
-| GET | `/admin/dashboard` | Dashboard stats |
-| GET/POST/PUT/DELETE | `/admin/products` | Product management |
-| GET/POST/PUT/DELETE | `/admin/categories` | Category management |
-| GET/PUT | `/admin/orders` | Order management |
-| GET | `/admin/customers` | Customer management |
+## API Areas
 
-**Full API documentation:** `backend/API_DOCUMENTATION.md`
+The API lives under `http://localhost:8000/api` by default.
 
----
+| Area | Examples |
+| --- | --- |
+| Auth | `POST /auth/register`, `POST /auth/login`, `GET /auth/profile` |
+| Catalog | `GET /categories`, `GET /products`, `GET /products/featured`, `GET /products/{slug}` |
+| Commerce | `/wishlist`, `/cart`, `/orders`, `/addresses`, `/payments/*` |
+| Reviews | `GET /products/{id}/reviews`, `POST /products/{id}/reviews` |
+| AI | `POST /ai/size-recommendation`, `POST /products/{product}/stylist` |
+| Social | `/feed`, `/posts`, `/posts/{post}/like`, `/users/{user}/follow` |
+| Admin | `/admin/dashboard`, `/admin/products`, `/admin/categories`, `/admin/orders`, `/admin/customers`, `/admin/reviews` |
 
-## Screens
+See `backend/API_DOCUMENTATION.md` for request and response examples.
 
-| Screen | Path | Description |
-|---|---|---|
-| Splash | `/` | Animated logo → auth check |
-| Login | `/login` | Email/password login |
-| Register | `/register` | New account creation |
-| Home | `/home` | Categories, featured, trending |
-| Shop | `/shop` | Product list with search/filter |
-| Product Detail | `/product/{slug}` | Full product with reviews |
-| Cart | `/cart` | Shopping cart with totals |
-| Checkout | `/checkout` | 3-step: Address → Payment → Review |
-| Orders | `/orders` | Order history |
-| Wishlist | `/wishlist` | Saved products |
-| Profile | `/profile` | User profile + menu |
-| Settings | `/settings` | Theme toggle + account settings |
-| Addresses | `/addresses` | Manage shipping addresses |
-| Notifications | `/notifications` | Notification center |
-| Feed | `/feed` | Social fashion feed |
-| Payment History | `/payment-history` | Transaction history |
-| Admin Panel | `/admin` | Dashboard + management |
+## Seed Data
 
----
+The backend seeders create:
 
-## Security
+- 8 categories: T-Shirts, Shirts, Pants, Jeans, Shoes, Accessories, Watches, and Outerwear
+- A premium product catalog with images, sizes, colors, stock, featured flags, and trending flags
 
-- **Authentication:** Laravel Sanctum token-based auth
-- **Admin Protection:** Role-based middleware on all admin routes
-- **Ownership Checks:** All user data (orders, reviews, addresses, payments) verified against authenticated user
-- **Input Validation:** Laravel validation on all endpoints
-- **File Upload Validation:** Mimetype + size limits on image uploads
-- **SQL Injection Prevention:** Eloquent ORM with parameterized queries
+The Flutter mock mode reads matching fixture data from `assets/mock/`.
 
----
+## Useful Commands
 
-## Performance
+```bash
+# Flutter
+flutter pub get
+flutter analyze
+flutter test
+flutter run
 
-- **Database Indexing:** Optimized queries with proper indexes
-- **Eager Loading:** Prevents N+1 query issues
-- **Pagination:** All list endpoints paginated (20 items)
-- **Image Caching:** CachedNetworkImage with placeholders
-- **Lazy Loading:** ListView.builder / GridView.builder for efficient rendering
-- **API Caching:** CacheService with configurable TTL
-- **Lazy Rendering:** const constructors and selective rebuilds
+# Laravel
+cd backend
+composer run test
+php artisan migrate:fresh --seed
+php artisan serve --host=0.0.0.0 --port=8000
+npm run dev
+```
 
----
+## Security Notes
 
-## Project Stats
+- Laravel Sanctum protects authenticated API routes.
+- Admin endpoints are guarded by role-based middleware.
+- User-owned resources are checked against the authenticated user.
+- API requests use Laravel validation and Eloquent query binding.
+- Flutter stores tokens with `flutter_secure_storage`.
 
-| Metric | Count |
-|---|---|
-| Total Source Files | 135 |
-| Database Tables | 20 |
-| API Endpoints | 76 |
-| API Controllers | 20 |
-| Eloquent Models | 20 |
-| Flutter Screens | 24 |
-| Flutter Providers | 10 |
-| Flutter Repositories | 12 |
+## Documentation
 
----
+- API reference: `backend/API_DOCUMENTATION.md`
+- Flutter dependencies: `pubspec.yaml`
+- Backend dependencies: `backend/composer.json` and `backend/package.json`
 
 ## License
 
-This project is for educational and portfolio purposes.
-
----
-
-## Author
-
-Built with Flutter + Laravel for premium men's fashion e-commerce.
+This project is intended for education, portfolio, and demonstration use.

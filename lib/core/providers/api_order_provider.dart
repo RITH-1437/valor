@@ -1,10 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../data/mock_repositories.dart';
 import '../models/api_order.dart';
+import '../network/api_client.dart' show ApiClient, ApiMode;
 import '../repositories/order_repository.dart';
 import 'auth_provider.dart';
 
 final orderRepositoryProvider = Provider<OrderRepository>((ref) {
-  return OrderRepository();
+  return ApiClient.apiMode == ApiMode.live ? ApiOrderRepository() : MockOrderRepository();
 });
 
 class OrderNotifier extends AsyncNotifier<List<OrderModel>> {

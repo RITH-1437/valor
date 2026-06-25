@@ -25,33 +25,15 @@ class ProductSeeder extends Seeder
         ['name' => 'Brown', 'hex_code' => '#6B4423'],
     ];
 
-    private array $imagePool = [
-        'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600',
-        'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600',
-        'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600',
-        'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600',
-        'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600',
-        'https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?w=600',
-        'https://images.unsplash.com/photo-1617127365659-c47b8641b0b0?w=600',
-        'https://images.unsplash.com/photo-1614252369475-531eba835eb1?w=600',
-        'https://images.unsplash.com/photo-1614252235316-8c857f0c8b7b?w=600',
-        'https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=600',
-        'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600',
-        'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600',
-        'https://images.unsplash.com/photo-1622560480605-d83c853bc5c3?w=600',
-        'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600',
-        'https://images.unsplash.com/photo-1508296695146-257a814070b4?w=600',
-        'https://images.unsplash.com/photo-1589756823695-278bc923f962?w=600',
-        'https://images.unsplash.com/photo-1598532163257-ae3c6b2524b6?w=600',
-        'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600',
-        'https://images.unsplash.com/photo-1560243563-062bfc001d68?w=600',
-        'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600',
-        'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600',
-        'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600',
-        'https://images.unsplash.com/photo-1556906781-9a412961c28c?w=600',
-        'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=600',
-        'https://images.unsplash.com/photo-1603252109303-2751441dd157?w=600',
-    ];
+    private function imageUrl(string $slug): string
+    {
+        return "https://picsum.photos/seed/{$slug}/600/800";
+    }
+
+    private function imagePoolUrl(int $index): string
+    {
+        return "https://picsum.photos/seed/product{$index}/600/800";
+    }
 
     public function run(): void
     {
@@ -60,18 +42,16 @@ class ProductSeeder extends Seeder
         $products = $this->getProductData($categories);
 
         foreach ($products as $data) {
+            $data['image'] = $this->imageUrl($data['slug']);
             $product = Product::create($data);
 
             // Add 2-3 images per product
-            $imageIndex = crc32($data['sku']) % count($this->imagePool);
-            $images = array_slice($this->imagePool, $imageIndex, 3);
-            if (count($images) < 2) {
-                $images = array_merge($images, array_slice($this->imagePool, 0, 2 - count($images)));
-            }
-            foreach ($images as $idx => $img) {
+            $baseIdx = abs(crc32($data['sku'])) % 50;
+            $imageCount = rand(2, 3);
+            for ($idx = 0; $idx < $imageCount; $idx++) {
                 ProductImage::create([
                     'product_id' => $product->id,
-                    'image' => $img,
+                    'image' => $this->imagePoolUrl($baseIdx + $idx),
                     'sort_order' => $idx,
                 ]);
             }

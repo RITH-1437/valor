@@ -1,9 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../data/mock_repositories.dart';
 import '../models/api_product.dart';
+import '../network/api_client.dart' show ApiClient, ApiMode;
 import '../repositories/product_repository.dart';
 
 final productRepositoryProvider = Provider<ProductRepository>((ref) {
-  return ProductRepository();
+  return ApiClient.apiMode == ApiMode.live ? ApiProductRepository() : MockProductRepository();
 });
 
 final featuredProductsProvider = FutureProvider<List<ProductModel>>((ref) async {
@@ -49,6 +51,8 @@ class ProductFilterNotifier extends Notifier<ProductFilter> {
   void setSearch(String v) => state = state.copyWith(search: v, clearSearch: v.isEmpty);
   void setCategory(String? v) => state = state.copyWith(category: v, clearCategory: v == null);
   void setSort(String? v) => state = state.copyWith(sort: v, clearSort: v == null);
+  void setMinPrice(double? v) => state = state.copyWith(minPrice: v, clearMinPrice: v == null);
+  void setMaxPrice(double? v) => state = state.copyWith(maxPrice: v, clearMaxPrice: v == null);
   void reset() => state = const ProductFilter();
 }
 

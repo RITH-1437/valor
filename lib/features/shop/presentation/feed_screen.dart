@@ -3,12 +3,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:intl/intl.dart';
 import '../../../app/theme/app_theme.dart';
+import '../../../core/data/mock_repositories.dart';
 import '../../../core/models/api_post.dart';
-import '../../../core/repositories/social_repository.dart';
+import '../../../core/network/api_client.dart' show ApiClient, ApiMode;
 import '../../../core/providers/auth_provider.dart';
+import '../../../core/repositories/social_repository.dart';
 import '../../../shared/widgets/empty_state.dart';
 
-final socialRepositoryProvider = Provider<SocialRepository>((ref) => SocialRepository());
+final socialRepositoryProvider = Provider<SocialRepository>((ref) {
+  return ApiClient.apiMode == ApiMode.live ? ApiSocialRepository() : MockSocialRepository();
+});
 
 final feedProvider = FutureProvider<List<PostModel>>((ref) async {
   ref.watch(authProvider);
@@ -141,8 +145,10 @@ class _PostCard extends ConsumerWidget {
               children: [
                 GestureDetector(
                   onTap: () async {
-                    await ref.read(socialRepositoryProvider).toggleLike(post.id);
-                    ref.invalidate(feedProvider);
+                    try {
+                      await ref.read(socialRepositoryProvider).toggleLike(post.id);
+                      ref.invalidate(feedProvider);
+                    } catch (_) {}
                   },
                   child: Row(children: [
                     Icon(post.isLiked ? Icons.favorite : Icons.favorite_border, color: post.isLiked ? Colors.redAccent : AppTheme.gray, size: 20),
@@ -245,6 +251,6 @@ class _CreatePostSheetState extends ConsumerState<_CreatePostSheet> {
       ref.invalidate(feedProvider);
       if (mounted) Navigator.pop(context);
     } catch (_) {}
-    setState(() => _isLoading = false);
+    if (mounted) setState(() => _isLoading = false);
   }
 }

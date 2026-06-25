@@ -1,11 +1,24 @@
+import 'package:dio/dio.dart';
+import 'package:image_picker/image_picker.dart';
 import '../models/api_user.dart';
 import '../network/api_client.dart';
 import '../network/api_constants.dart';
 import '../storage/secure_storage_service.dart';
 
-class AuthRepository {
+abstract class AuthRepository {
+  Future<UserModel> login(String email, String password);
+  Future<UserModel> register({required String name, required String email, required String password, String? phone});
+  Future<void> logout();
+  Future<UserModel> profile();
+  Future<UserModel> updateProfile({String? name, String? phone, String? avatar});
+  Future<UserModel> uploadAvatar(XFile file);
+  Future<UserModel> deleteAvatar();
+}
+
+class ApiAuthRepository implements AuthRepository {
   final _client = ApiClient().dio;
 
+  @override
   Future<UserModel> login(String email, String password) async {
     final response = await _client.post(ApiConstants.login, data: {
       'email': email,
@@ -17,6 +30,7 @@ class AuthRepository {
     return UserModel.fromJson(data['user']);
   }
 
+  @override
   Future<UserModel> register({
     required String name,
     required String email,
@@ -36,6 +50,7 @@ class AuthRepository {
     return UserModel.fromJson(data['user']);
   }
 
+  @override
   Future<void> logout() async {
     try {
       await _client.post(ApiConstants.logout);
@@ -43,11 +58,13 @@ class AuthRepository {
     await SecureStorageService.logout();
   }
 
+  @override
   Future<UserModel> profile() async {
     final response = await _client.get(ApiConstants.profile);
     return UserModel.fromJson(response.data['data']);
   }
 
+  @override
   Future<UserModel> updateProfile({String? name, String? phone, String? avatar}) async {
     final data = <String, dynamic>{};
     if (name != null) data['name'] = name;
@@ -55,6 +72,33 @@ class AuthRepository {
     if (avatar != null) data['avatar'] = avatar;
 
     final response = await _client.put(ApiConstants.profile, data: data);
+    final user = UserModel.fromJson(response.data['user']);
+    await SecureStorageService.saveUser(user.toJson());
+    return user;
+  }
+
+  @override
+  Future<UserModel> uploadAvatar(XFile file) async {
+    final bytes = await file.readAsBytes();
+    final multipartFile = MultipartFile.fromBytes(
+      bytes,
+      filename: 'avatar_${DateTime.now().millisecondsSinceEpoch}.jpg',
+    );
+    final formData = FormData.fromMap({
+      'avatar': multipartFile,
+    });
+    final response = await _client.post(
+      ApiConstants.avatarUpload,
+      data: formData,
+    );
+    final user = UserModel.fromJson(response.data['user']);
+    await SecureStorageService.saveUser(user.toJson());
+    return user;
+  }
+
+  @override
+  Future<UserModel> deleteAvatar() async {
+    final response = await _client.delete(ApiConstants.avatarDelete);
     final user = UserModel.fromJson(response.data['user']);
     await SecureStorageService.saveUser(user.toJson());
     return user;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../app/theme/app_theme.dart';
-import '../../../core/repositories/ai_repository.dart';
+import '../../../core/providers/api_ai_provider.dart';
 
 class AISizeDialog extends ConsumerStatefulWidget {
   const AISizeDialog({super.key});
@@ -121,9 +121,9 @@ class _AISizeDialogState extends ConsumerState<AISizeDialog> {
         weightKg: int.parse(_weightCtrl.text),
         bodyType: _bodyType,
       );
-      setState(() { _result = result; _isLoading = false; });
+      if (mounted) setState(() { _result = result; _isLoading = false; });
     } catch (e) {
-      setState(() => _isLoading = false);
+      if (mounted) setState(() => _isLoading = false);
     }
   }
 
