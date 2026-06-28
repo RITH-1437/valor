@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import '../../../app/theme/app_theme.dart';
 import '../../../core/providers/api_payment_provider.dart';
@@ -48,11 +49,11 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
             const Text('Select Payment Method', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w700)),
             const SizedBox(height: 16),
 
-            _paymentOption('cod', 'Cash on Delivery', 'Pay when you receive your order', Icons.money),
+            _paymentOption('cod', 'Cash on Delivery', 'Pay when you receive your order', FontAwesomeIcons.moneyBill),
             const SizedBox(height: 12),
-            _paymentOption('stripe', 'Credit / Debit Card', 'Secure payment via Stripe', Icons.credit_card_rounded),
+            _paymentOption('stripe', 'Credit / Debit Card', 'Secure payment via Stripe', FontAwesomeIcons.creditCard),
             const SizedBox(height: 12),
-            _paymentOption('paypal', 'PayPal', 'Pay with your PayPal account', Icons.account_balance_wallet),
+            _paymentOption('paypal', 'PayPal', 'Pay with your PayPal account', FontAwesomeIcons.paypal),
 
             const SizedBox(height: 32),
 
@@ -77,8 +78,15 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
     );
   }
 
-  Widget _paymentOption(String provider, String title, String subtitle, IconData icon) {
+  Widget _paymentOption(String provider, String title, String subtitle, dynamic icon) {
     final selected = _selectedProvider == provider;
+    Widget iconWidget = const SizedBox.shrink();
+    if (icon is FaIconData) {
+      iconWidget = FaIcon(icon, color: selected ? AppTheme.gold : Colors.white, size: 24);
+    } else if (icon is IconData) {
+      iconWidget = Icon(icon, color: selected ? AppTheme.gold : Colors.white, size: 28);
+    }
+
     return GestureDetector(
       onTap: () => setState(() => _selectedProvider = provider),
       child: Container(
@@ -90,7 +98,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
         ),
         child: Row(
           children: [
-            Icon(icon, color: selected ? AppTheme.gold : Colors.white, size: 28),
+            SizedBox(width: 32, child: Center(child: iconWidget)),
             const SizedBox(width: 16),
             Expanded(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -99,7 +107,7 @@ class _PaymentScreenState extends ConsumerState<PaymentScreen> {
                 Text(subtitle, style: TextStyle(color: selected ? Colors.white70 : AppTheme.gray, fontSize: 12)),
               ]),
             ),
-            if (selected) const Icon(Icons.check_circle, color: AppTheme.gold, size: 24),
+            if (selected) const FaIcon(FontAwesomeIcons.circleCheck, color: AppTheme.gold, size: 20),
           ],
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -63,7 +64,7 @@ class _BranchMapScreenState extends ConsumerState<BranchMapScreen> {
         title: const Text('Find a Store'),
         actions: [
           IconButton(
-            icon: const Icon(Icons.my_location_outlined),
+            icon: const FaIcon(FontAwesomeIcons.locationCrosshairs),
             onPressed: () {
               if (branches.isNotEmpty) {
                 _mapController.move(LatLng(branches.first.lat, branches.first.lng), 14);
@@ -103,7 +104,7 @@ class _BranchMapScreenState extends ConsumerState<BranchMapScreen> {
                       child: Text(b.name.replaceAll('VALOR ', ''), style: const TextStyle(fontSize: 10, color: Colors.white, fontWeight: FontWeight.w600)),
                     ),
                     const SizedBox(height: 4),
-                    Icon(Icons.location_on, color: _selectedBranchId == b.id ? AppTheme.gold : Colors.red, size: 32),
+                    FaIcon(FontAwesomeIcons.locationDot, color: _selectedBranchId == b.id ? AppTheme.gold : Colors.red, size: 32),
                   ],
                 ),
               ),
@@ -136,8 +137,8 @@ class _BranchSheet extends StatelessWidget {
                   width: 80,
                   height: 80,
                   fit: BoxFit.cover,
-                  placeholder: (_, _) => Container(color: AppTheme.black, child: const Icon(Icons.store, color: AppTheme.gray)),
-                  errorWidget: (_, _, _) => Container(color: AppTheme.black, child: const Icon(Icons.store, color: AppTheme.gray)),
+                  placeholder: (_, _) => Container(color: AppTheme.black, child: const FaIcon(FontAwesomeIcons.shop, color: AppTheme.gray)),
+                  errorWidget: (_, _, _) => Container(color: AppTheme.black, child: const FaIcon(FontAwesomeIcons.shop, color: AppTheme.gray)),
                 ),
               ),
               const SizedBox(width: 16),
@@ -154,15 +155,15 @@ class _BranchSheet extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 20),
-          _infoRow(Icons.phone_outlined, branch.phone),
+          _infoRow(FontAwesomeIcons.phone, branch.phone),
           const SizedBox(height: 12),
-          _infoRow(Icons.access_time_rounded, branch.hours),
+          _infoRow(FontAwesomeIcons.clock, branch.hours),
           const SizedBox(height: 24),
           SizedBox(
             width: double.infinity,
             child: ElevatedButton.icon(
               onPressed: () => _launchDirections(context),
-              icon: const Icon(Icons.directions_outlined),
+              icon: const FaIcon(FontAwesomeIcons.diamondTurnRight, size: 18),
               label: const Text('Get Directions'),
             ),
           ),
@@ -171,10 +172,17 @@ class _BranchSheet extends StatelessWidget {
     );
   }
 
-  Widget _infoRow(IconData icon, String text) {
+  Widget _infoRow(dynamic icon, String text) {
+    Widget iconWidget = const SizedBox.shrink();
+    if (icon is FaIconData) {
+      iconWidget = FaIcon(icon, color: AppTheme.gold, size: 18);
+    } else if (icon is IconData) {
+      iconWidget = Icon(icon, color: AppTheme.gold, size: 20);
+    }
+
     return Row(
       children: [
-        Icon(icon, color: AppTheme.gold, size: 20),
+        SizedBox(width: 24, child: Center(child: iconWidget)),
         const SizedBox(width: 12),
         Expanded(child: Text(text, style: const TextStyle(fontSize: 14, color: AppTheme.gray))),
       ],

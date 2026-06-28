@@ -21,18 +21,33 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 1500));
-    _scaleAnimation = Tween<double>(begin: 0.8, end: 1.0).animate(CurvedAnimation(parent: _controller, curve: Curves.elasticOut));
-    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(parent: _controller, curve: const Interval(0.0, 0.5, curve: Curves.easeOut)));
+    _controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 800));
+    _scaleAnimation = Tween<double>(begin: 0.8, end: 1.0).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOutBack));
+    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(parent: _controller, curve: const Interval(0.0, 0.8, curve: Curves.easeIn)));
     _controller.forward();
-    _checkOnboarding();
+    _checkStatus();
   }
 
-  Future<void> _checkOnboarding() async {
+  Future<void> _checkStatus() async {
+    // Small delay to ensure splash is visible for a moment and animation starts
+    await Future.delayed(const Duration(milliseconds: 1000));
+    if (!mounted) return;
+
     final prefs = await SharedPreferences.getInstance();
-    final done = prefs.getBool('onboarding_done') ?? false;
-    if (!done && mounted) {
+    if (!mounted) return;
+
+    final onboardingDone = prefs.getBool('onboarding_done') ?? false;
+
+    if (!onboardingDone) {
       context.go('/onboarding');
+      return;
+    }
+
+    final authState = ref.read(authProvider);
+    if (authState.status == AuthStatus.authenticated) {
+      context.go('/home');
+    } else if (authState.status == AuthStatus.unauthenticated || authState.status == AuthStatus.error) {
+      context.go('/login');
     }
   }
 

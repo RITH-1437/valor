@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../app/theme/app_theme.dart';
 
 class EmptyState extends StatelessWidget {
-  final IconData icon;
+  final dynamic icon;
   final String title;
   final String subtitle;
   final String? actionLabel;
@@ -19,6 +20,15 @@ class EmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget iconWidget = const SizedBox.shrink();
+    if (icon is IconData) {
+      if (icon is FaIconData) {
+        iconWidget = FaIcon(icon as FaIconData, size: 40, color: AppTheme.gray);
+      } else {
+        iconWidget = Icon(icon as IconData, size: 44, color: AppTheme.gray);
+      }
+    }
+
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(40),
@@ -33,7 +43,7 @@ class EmptyState extends StatelessWidget {
                 shape: BoxShape.circle,
                 border: Border.all(color: AppTheme.darkGray),
               ),
-              child: Icon(icon, size: 44, color: AppTheme.gray),
+              child: Center(child: iconWidget),
             ),
             const SizedBox(height: 24),
             Text(title, style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w700)),

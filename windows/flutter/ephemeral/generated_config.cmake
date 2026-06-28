@@ -15,7 +15,7 @@ list(APPEND FLUTTER_TOOL_ENVIRONMENT
   "FLUTTER_ROOT=D:\\Personal\\my-project\\Mobile-app\\flutter"
   "FLUTTER_EPHEMERAL_DIR=D:\\Personal\\my-project\\valor\\windows\\flutter\\ephemeral"
   "PROJECT_DIR=D:\\Personal\\my-project\\valor"
-  "FLUTTER_TARGET=D:\\Personal\\my-project\\valor\\lib\\main.dart"
+  "FLUTTER_TARGET=lib\\main.dart"
   "DART_DEFINES=RkxVVFRFUl9WRVJTSU9OPTMuNDQuMg==,RkxVVFRFUl9DSEFOTkVMPXN0YWJsZQ==,RkxVVFRFUl9HSVRfVVJMPWh0dHBzOi8vZ2l0aHViLmNvbS9mbHV0dGVyL2ZsdXR0ZXIuZ2l0,RkxVVFRFUl9GUkFNRVdPUktfUkVWSVNJT049YzlhNmM0ODQyMw==,RkxVVFRFUl9FTkdJTkVfUkVWSVNJT049NzdlMmU5NDc3Mg==,RkxVVFRFUl9EQVJUX1ZFUlNJT049My4xMi4y"
   "DART_OBFUSCATION=false"
   "TRACK_WIDGET_CREATION=true"

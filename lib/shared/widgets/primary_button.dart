@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PrimaryButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
   final bool isLoading;
-  final IconData? icon;
+  final dynamic icon;
   final Color? backgroundColor;
   final Color? foregroundColor;
   final double? height;
@@ -95,7 +96,16 @@ class PrimaryButton extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       if (icon != null) ...[
-                        Icon(icon, size: 20),
+                        Builder(
+                          builder: (context) {
+                            if (icon is FaIconData) {
+                              return FaIcon(icon, size: 18);
+                            } else if (icon is IconData) {
+                              return Icon(icon, size: 20);
+                            }
+                            return const SizedBox.shrink();
+                          },
+                        ),
                         const SizedBox(width: 10),
                       ],
                       Text(text),

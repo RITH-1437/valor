@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../../../app/theme/app_theme.dart';
@@ -59,7 +60,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> {
                 pinned: true,
                 backgroundColor: AppTheme.black,
                 leading: IconButton(
-                  icon: const Icon(Icons.arrow_back_rounded, color: Colors.white),
+                  icon: const FaIcon(FontAwesomeIcons.arrowLeft, color: Colors.white),
                   onPressed: () => context.pop(),
                 ),
                 actions: [
@@ -94,7 +95,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> {
                               width: double.infinity,
                               fit: BoxFit.cover,
                               placeholder: (ctx, url) => Container(color: AppTheme.darkGray, child: const Center(child: CircularProgressIndicator(color: AppTheme.gold))),
-                              errorWidget: (ctx, url, err) => Container(color: AppTheme.darkGray, child: const Center(child: Icon(Icons.broken_image, color: AppTheme.gray, size: 40))),
+                              errorWidget: (ctx, url, err) => Container(color: AppTheme.darkGray, child: const Center(child: FaIcon(FontAwesomeIcons.image, color: AppTheme.gray, size: 40))),
                             ),
                           ),
                         ),
@@ -139,7 +140,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> {
                           child: Container(
                             padding: const EdgeInsets.all(10),
                             decoration: const BoxDecoration(color: AppTheme.black, shape: BoxShape.circle),
-                            child: Icon(isWishlisted ? Icons.favorite : Icons.favorite_border, color: isWishlisted ? AppTheme.gold : Colors.white),
+                            child: FaIcon(isWishlisted ? FontAwesomeIcons.solidHeart : FontAwesomeIcons.heart, color: isWishlisted ? AppTheme.gold : Colors.white, size: 18),
                           ),
                         ),
                       ),
@@ -271,7 +272,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> {
                                   border: Border.all(color: selected ? AppTheme.gold : Colors.white24, width: selected ? 3 : 1),
                                   boxShadow: selected ? [BoxShadow(color: AppTheme.gold.withAlpha(80), blurRadius: 8)] : null,
                                 ),
-                                child: selected ? const Icon(Icons.check, color: Colors.white, size: 20) : null,
+                                child: selected ? const FaIcon(FontAwesomeIcons.check, color: Colors.white, size: 20) : null,
                               ),
                             );
                           }).toList(),
@@ -286,7 +287,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> {
                         children: [
                           GestureDetector(
                             onTap: () { if (_quantity > 1) setState(() => _quantity--); },
-                            child: Container(padding: const EdgeInsets.all(12), decoration: BoxDecoration(color: AppTheme.darkGray, borderRadius: BorderRadius.circular(10)), child: const Icon(Icons.remove, color: Colors.white, size: 20)),
+                            child: Container(padding: const EdgeInsets.all(12), decoration: BoxDecoration(color: AppTheme.darkGray, borderRadius: BorderRadius.circular(10)), child: const FaIcon(FontAwesomeIcons.minus, color: Colors.white, size: 20)),
                           ),
                           Container(
                             margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -296,7 +297,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> {
                           ),
                           GestureDetector(
                             onTap: () { if (_quantity < product.stock) setState(() => _quantity++); },
-                            child: Container(padding: const EdgeInsets.all(12), decoration: BoxDecoration(color: AppTheme.darkGray, borderRadius: BorderRadius.circular(10)), child: const Icon(Icons.add, color: Colors.white, size: 20)),
+                            child: Container(padding: const EdgeInsets.all(12), decoration: BoxDecoration(color: AppTheme.darkGray, borderRadius: BorderRadius.circular(10)), child: const FaIcon(FontAwesomeIcons.plus, color: Colors.white, size: 20)),
                           ),
                           const Spacer(),
                           Text('${product.stock} in stock', style: TextStyle(color: product.stock <= 5 ? Colors.orange : AppTheme.gray, fontSize: 13, fontWeight: product.stock <= 5 ? FontWeight.w600 : FontWeight.w400)),
@@ -427,7 +428,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> {
               top: 8,
               right: 8,
               child: IconButton(
-                icon: const Icon(Icons.close, color: Colors.white),
+                icon: const FaIcon(FontAwesomeIcons.xmark, color: Colors.white),
                 onPressed: () => Navigator.pop(context),
               ),
             ),
@@ -468,7 +469,7 @@ class _ReviewsSection extends ConsumerWidget {
               const Text('Reviews', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w700)),
               const SizedBox(width: 12),
               if (reviewState.totalReviews > 0) ...[
-                const Icon(Icons.star_rounded, color: AppTheme.gold, size: 18),
+                const FaIcon(FontAwesomeIcons.solidStar, color: AppTheme.gold, size: 14),
                 const SizedBox(width: 4),
                 Text('${reviewState.averageRating}', style: const TextStyle(color: AppTheme.gold, fontWeight: FontWeight.w700)),
                 const SizedBox(width: 4),
@@ -491,10 +492,13 @@ class _ReviewsSection extends ConsumerWidget {
                   Row(
                     children: List.generate(5, (i) => GestureDetector(
                       onTap: () => onRatingChanged(i + 1),
-                      child: Icon(
-                        i < selectedRating ? Icons.star_rounded : Icons.star_outline_rounded,
-                        color: AppTheme.gold,
-                        size: 28,
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 4),
+                        child: FaIcon(
+                          i < selectedRating ? FontAwesomeIcons.solidStar : FontAwesomeIcons.star,
+                          color: AppTheme.gold,
+                          size: 24,
+                        ),
                       ),
                     )),
                   ),
@@ -547,10 +551,13 @@ class _ReviewsSection extends ConsumerWidget {
                       Text(review.userName ?? 'User', style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600)),
                       const Spacer(),
                       Row(
-                        children: List.generate(5, (i) => Icon(
-                          i < review.rating ? Icons.star_rounded : Icons.star_outline_rounded,
-                          color: AppTheme.gold,
-                          size: 14,
+                        children: List.generate(5, (i) => Padding(
+                          padding: const EdgeInsets.only(left: 2),
+                          child: FaIcon(
+                            i < review.rating ? FontAwesomeIcons.solidStar : FontAwesomeIcons.star,
+                            color: AppTheme.gold,
+                            size: 10,
+                          ),
                         )),
                       ),
                     ],
@@ -609,7 +616,7 @@ class _RelatedProducts extends ConsumerWidget {
                           width: 150,
                           fit: BoxFit.cover,
                           placeholder: (ctx, url) => Container(color: AppTheme.darkGray),
-                          errorWidget: (ctx, url, err) => Container(color: AppTheme.darkGray, child: const Icon(Icons.image, color: AppTheme.gray)),
+                          errorWidget: (ctx, url, err) => Container(color: AppTheme.darkGray, child: const FaIcon(FontAwesomeIcons.image, color: AppTheme.gray, size: 20)),
                         ),
                       ),
                     ),

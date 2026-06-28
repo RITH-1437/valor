@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../../../app/theme/app_theme.dart';
@@ -9,18 +10,18 @@ import '../../../core/providers/auth_provider.dart';
 import '../../../core/providers/api_category_provider.dart';
 import '../../../core/providers/api_product_provider.dart';
 
-IconData _categoryIcon(String slug) {
+dynamic _categoryIcon(String slug) {
   switch (slug) {
-    case 't-shirts': return Icons.checkroom_outlined;
-    case 'shirts': return Icons.dry_cleaning_outlined;
-    case 'jeans': return Icons.shopping_bag_outlined;
-    case 'pants': return Icons.straighten_outlined;
-    case 'outerwear': return Icons.hiking_outlined;
-    case 'shoes': return Icons.run_circle_outlined;
-    case 'watches': return Icons.watch_outlined;
-    case 'accessories': return Icons.diamond_outlined;
-    case 'bags': return Icons.work_outline;
-    default: return Icons.category_outlined;
+    case 't-shirts': return FontAwesomeIcons.shirt;
+    case 'shirts': return FontAwesomeIcons.shirt;
+    case 'jeans': return FontAwesomeIcons.bagShopping;
+    case 'pants': return FontAwesomeIcons.ruler;
+    case 'outerwear': return FontAwesomeIcons.personHiking;
+    case 'shoes': return FontAwesomeIcons.personRunning;
+    case 'watches': return FontAwesomeIcons.clock;
+    case 'accessories': return FontAwesomeIcons.gem;
+    case 'bags': return FontAwesomeIcons.briefcase;
+    default: return FontAwesomeIcons.list;
   }
 }
 
@@ -71,13 +72,31 @@ class HomeScreen extends ConsumerWidget {
             const SliverToBoxAdapter(child: SizedBox(height: 28)),
             SliverToBoxAdapter(child: Padding(padding: const EdgeInsets.fromLTRB(20, 0, 20, 16), child: _SectionHeader(title: 'New Arrivals', onSeeAll: () => context.push('/shop?sort=newest')))),
             featured.when(
-              data: (products) => SliverToBoxAdapter(child: Padding(padding: const EdgeInsets.only(bottom: 24), child: _ProductCarousel(products: products))),
+              data: (products) {
+                if (products.isEmpty) {
+                  return const SliverToBoxAdapter(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                      child: Text('No new arrivals found', style: TextStyle(color: AppTheme.gray)),
+                    ),
+                  );
+                }
+                return SliverToBoxAdapter(child: Padding(padding: const EdgeInsets.only(bottom: 24), child: _ProductCarousel(products: products)));
+              },
               loading: () => const SliverToBoxAdapter(child: SizedBox(height: 200, child: Center(child: CircularProgressIndicator(color: AppTheme.gold)))),
-              error: (_, _) => const SliverToBoxAdapter(child: SizedBox(height: 200)),
+              error: (e, st) => SliverToBoxAdapter(child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Text('Error loading arrivals: $e', style: const TextStyle(color: Colors.redAccent, fontSize: 12)),
+              )),
             ),
             SliverToBoxAdapter(child: Padding(padding: const EdgeInsets.fromLTRB(20, 0, 20, 16), child: _SectionHeader(title: 'Best Sellers', onSeeAll: () => context.push('/shop?sort=popular')))),
             trending.when(
-              data: (products) => SliverToBoxAdapter(child: Padding(padding: const EdgeInsets.only(bottom: 40), child: _ProductCarousel(products: products))),
+              data: (products) {
+                if (products.isEmpty) {
+                  return const SliverToBoxAdapter(child: SizedBox(height: 40));
+                }
+                return SliverToBoxAdapter(child: Padding(padding: const EdgeInsets.only(bottom: 40), child: _ProductCarousel(products: products)));
+              },
               loading: () => const SliverToBoxAdapter(child: SizedBox(height: 200, child: Center(child: CircularProgressIndicator(color: AppTheme.gold)))),
               error: (_, _) => const SliverToBoxAdapter(child: SizedBox(height: 200)),
             ),
@@ -139,7 +158,7 @@ class _HeroBanner extends StatelessWidget {
                       width: 54,
                       height: 54,
                       decoration: BoxDecoration(color: AppTheme.darkGray, borderRadius: BorderRadius.circular(18), border: Border.all(color: AppTheme.darkGray)),
-                      child: const Center(child: Icon(Icons.map_outlined, color: AppTheme.gold, size: 26)),
+                      child: const Center(child: FaIcon(FontAwesomeIcons.map, color: AppTheme.gold, size: 26)),
                     ),
                   ),
                 ],
@@ -173,7 +192,7 @@ class _SearchBar extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Row(
           children: [
-            const Icon(Icons.search_rounded, color: AppTheme.gray, size: 22),
+            const FaIcon(FontAwesomeIcons.magnifyingGlass, color: AppTheme.gray, size: 22),
             const SizedBox(width: 12),
             const Expanded(child: Text('Search products...', style: TextStyle(fontSize: 14, color: AppTheme.gray))),
             Container(
@@ -182,7 +201,7 @@ class _SearchBar extends StatelessWidget {
               child: const Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.tune, color: AppTheme.gold, size: 16),
+                  FaIcon(FontAwesomeIcons.sliders, color: AppTheme.gold, size: 16),
                   SizedBox(width: 4),
                   Text('Filter', style: TextStyle(fontSize: 12, color: AppTheme.gold, fontWeight: FontWeight.w600)),
                 ],
@@ -213,7 +232,7 @@ class _SectionHeader extends StatelessWidget {
               children: [
                 Text('See All', style: TextStyle(fontSize: 13, color: AppTheme.gold, fontWeight: FontWeight.w600)),
                 SizedBox(width: 4),
-                Icon(Icons.arrow_forward_ios, color: AppTheme.gold, size: 12),
+                FaIcon(FontAwesomeIcons.chevronRight, color: AppTheme.gold, size: 12),
               ],
             ),
           ),
@@ -244,7 +263,19 @@ class _CategoryCarousel extends StatelessWidget {
                   Container(
                     width: 64, height: 64,
                     decoration: BoxDecoration(color: AppTheme.darkGray, shape: BoxShape.circle, border: Border.all(color: AppTheme.darkGray)),
-                    child: Icon(_categoryIcon(cat.slug), color: AppTheme.gold, size: 28),
+                    child: Center(
+                      child: Builder(
+                        builder: (context) {
+                          final icon = _categoryIcon(cat.slug);
+                          if (icon is FaIconData) {
+                            return FaIcon(icon, color: AppTheme.gold, size: 28);
+                          } else if (icon is IconData) {
+                            return Icon(icon, color: AppTheme.gold, size: 28);
+                          }
+                          return const SizedBox.shrink();
+                        },
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 8),
                   Text(cat.name, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: Colors.white)),
@@ -401,8 +432,8 @@ class _CarouselCard extends StatelessWidget {
                   children: [
                     CachedNetworkImage(
                       imageUrl: product.image, width: double.infinity, fit: BoxFit.cover,
-                      placeholder: (_, _) => Container(color: AppTheme.black, child: const Center(child: Icon(Icons.image_rounded, color: AppTheme.gray, size: 30))),
-                      errorWidget: (_, _, _) => Container(color: AppTheme.black, child: const Center(child: Icon(Icons.broken_image_rounded, color: AppTheme.gray, size: 30))),
+                      placeholder: (_, _) => Container(color: AppTheme.black, child: const Center(child: FaIcon(FontAwesomeIcons.image, color: AppTheme.gray, size: 30))),
+                      errorWidget: (_, _, _) => Container(color: AppTheme.black, child: const Center(child: FaIcon(FontAwesomeIcons.image, color: AppTheme.gray, size: 30))),
                     ),
                     if (product.hasDiscount)
                       Positioned(top: 8, left: 8, child: Container(

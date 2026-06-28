@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../app/theme/app_theme.dart';
 import '../../../core/network/api_client.dart';
 
@@ -43,14 +44,14 @@ class AdminDashboardScreen extends ConsumerWidget {
                     mainAxisSpacing: 12,
                     childAspectRatio: 1.5,
                     children: [
-                      _statCard('Total Revenue', '\$${(stats['total_revenue'] ?? 0).toStringAsFixed(0)}', Icons.attach_money, AppTheme.gold),
-                      _statCard('Total Orders', '${stats['total_orders'] ?? 0}', Icons.shopping_bag_outlined, Colors.blue),
-                      _statCard('Total Products', '${stats['total_products'] ?? 0}', Icons.inventory_2_outlined, Colors.green),
-                      _statCard('Total Users', '${stats['total_users'] ?? 0}', Icons.people_outline, Colors.purple),
-                      _statCard('Pending Orders', '${stats['pending_orders'] ?? 0}', Icons.pending_actions, Colors.orange),
-                      _statCard('Delivered', '${stats['delivered_orders'] ?? 0}', Icons.check_circle_outline, Colors.green),
-                      _statCard('Low Stock', '$lowStock', Icons.warning_amber, lowStock > 0 ? Colors.redAccent : AppTheme.gray),
-                      _statCard('Reviews', '${stats['total_reviews'] ?? 0}', Icons.star_outline_rounded, Colors.amber),
+                      _statCard('Total Revenue', '\$${(stats['total_revenue'] ?? 0).toStringAsFixed(0)}', FontAwesomeIcons.moneyBillTrendUp, AppTheme.gold),
+                      _statCard('Total Orders', '${stats['total_orders'] ?? 0}', FontAwesomeIcons.bagShopping, Colors.blue),
+                      _statCard('Total Products', '${stats['total_products'] ?? 0}', FontAwesomeIcons.boxesStacked, Colors.green),
+                      _statCard('Total Users', '${stats['total_users'] ?? 0}', FontAwesomeIcons.users, Colors.purple),
+                      _statCard('Pending Orders', '${stats['pending_orders'] ?? 0}', FontAwesomeIcons.clock, Colors.orange),
+                      _statCard('Delivered', '${stats['delivered_orders'] ?? 0}', FontAwesomeIcons.circleCheck, Colors.green),
+                      _statCard('Low Stock', '$lowStock', FontAwesomeIcons.triangleExclamation, lowStock > 0 ? Colors.redAccent : AppTheme.gray),
+                      _statCard('Reviews', '${stats['total_reviews'] ?? 0}', FontAwesomeIcons.star, Colors.amber),
                     ],
                   ),
 
@@ -61,7 +62,7 @@ class AdminDashboardScreen extends ConsumerWidget {
                       decoration: BoxDecoration(color: Colors.redAccent.withAlpha(20), borderRadius: BorderRadius.circular(12), border: Border.all(color: Colors.redAccent.withAlpha(50))),
                       child: Row(
                         children: [
-                          const Icon(Icons.warning_amber, color: Colors.redAccent, size: 24),
+                          const FaIcon(FontAwesomeIcons.triangleExclamation, color: Colors.redAccent, size: 24),
                           const SizedBox(width: 12),
                           Expanded(child: Text('$lowStock products are running low on stock', style: const TextStyle(color: Colors.redAccent, fontWeight: FontWeight.w600))),
                         ],
@@ -121,7 +122,14 @@ class AdminDashboardScreen extends ConsumerWidget {
     );
   }
 
-  Widget _statCard(String title, String value, IconData icon, Color color) {
+  Widget _statCard(String title, String value, dynamic icon, Color color) {
+    Widget iconWidget = const SizedBox.shrink();
+    if (icon is FaIconData) {
+      iconWidget = FaIcon(icon, color: color, size: 18);
+    } else if (icon is IconData) {
+      iconWidget = Icon(icon, color: color, size: 22);
+    }
+
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(color: AppTheme.darkGray, borderRadius: BorderRadius.circular(12)),
@@ -129,7 +137,7 @@ class AdminDashboardScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon, color: color, size: 22),
+          iconWidget,
           const SizedBox(height: 8),
           Text(value, style: TextStyle(color: color, fontSize: 20, fontWeight: FontWeight.w800)),
           const SizedBox(height: 2),

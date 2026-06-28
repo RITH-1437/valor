@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../../../app/theme/app_theme.dart';
@@ -339,16 +340,20 @@ class _ProductListScreenState extends ConsumerState<ProductListScreen> {
                     decoration: InputDecoration(
                       hintText: 'Search products...',
                       hintStyle: const TextStyle(color: AppTheme.gray),
-                      prefixIcon: const Icon(
-                        Icons.search_rounded,
-                        color: AppTheme.gray,
+                      prefixIcon: const Padding(
+                        padding: EdgeInsets.all(14.0),
+                        child: FaIcon(
+                          FontAwesomeIcons.magnifyingGlass,
+                          color: AppTheme.gray,
+                          size: 18,
+                        ),
                       ),
                       suffixIcon: _searchController.text.isNotEmpty
                           ? IconButton(
-                              icon: const Icon(
-                                Icons.clear_rounded,
+                              icon: const FaIcon(
+                                FontAwesomeIcons.xmark,
                                 color: AppTheme.gray,
-                                size: 20,
+                                size: 16,
                               ),
                               onPressed: () {
                                 _searchController.clear();
@@ -372,9 +377,10 @@ class _ProductListScreenState extends ConsumerState<ProductListScreen> {
                     onPressed: _showFilterSheet,
                     icon: Badge(
                       isLabelVisible: hasActiveFilters,
-                      child: const Icon(
-                        Icons.tune_rounded,
+                      child: const FaIcon(
+                        FontAwesomeIcons.sliders,
                         color: AppTheme.gray,
+                        size: 20,
                       ),
                     ),
                   ),
@@ -465,7 +471,7 @@ class _ProductListScreenState extends ConsumerState<ProductListScreen> {
                 final products = data['products'] as List<ProductModel>;
                 if (products.isEmpty) {
                   return EmptyState(
-                    icon: Icons.search_off_rounded,
+                    icon: FontAwesomeIcons.magnifyingGlass,
                     title: 'No products found',
                     subtitle: 'Try adjusting your search or filters',
                     actionLabel: 'Clear Filters',
@@ -526,8 +532,8 @@ class _ProductListScreenState extends ConsumerState<ProductListScreen> {
           const SizedBox(width: 4),
           GestureDetector(
             onTap: onRemove,
-            child: const Icon(
-              Icons.clear_all_rounded,
+            child: const FaIcon(
+              FontAwesomeIcons.listCheck,
               size: 14,
               color: AppTheme.gold,
             ),
@@ -585,10 +591,10 @@ class _FilterChipGrid extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(
+                FaIcon(
                   isSelected
-                      ? Icons.check_box_rounded
-                      : Icons.check_box_outline_blank_rounded,
+                      ? FontAwesomeIcons.squareCheck
+                      : FontAwesomeIcons.square,
                   size: 16,
                   color: isSelected ? AppTheme.black : AppTheme.gray,
                 ),
@@ -642,10 +648,10 @@ class _SortOptions extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Icon(
+                FaIcon(
                   isSelected
-                      ? Icons.radio_button_checked_rounded
-                      : Icons.radio_button_unchecked_rounded,
+                      ? FontAwesomeIcons.circleDot
+                      : FontAwesomeIcons.circle,
                   size: 18,
                   color: isSelected ? AppTheme.gold : AppTheme.gray,
                 ),
@@ -713,10 +719,10 @@ class _AvailabilityOptions extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Icon(
+            FaIcon(
               value
-                  ? Icons.check_box_rounded
-                  : Icons.check_box_outline_blank_rounded,
+                  ? FontAwesomeIcons.squareCheck
+                  : FontAwesomeIcons.square,
               size: 20,
               color: value ? AppTheme.gold : AppTheme.gray,
             ),
@@ -779,11 +785,11 @@ class _ProductCard extends ConsumerWidget {
                           child: CachedNetworkImage(
                             imageUrl: product.image,
                             fit: BoxFit.cover,
-                            placeholder: (ctx, url) => Container(
+                              placeholder: (ctx, url) => Container(
                               color: AppTheme.black,
                               child: const Center(
-                                child: Icon(
-                                  Icons.image_rounded,
+                                child: FaIcon(
+                                  FontAwesomeIcons.image,
                                   color: AppTheme.gray,
                                   size: 40,
                                 ),
@@ -792,8 +798,8 @@ class _ProductCard extends ConsumerWidget {
                             errorWidget: (ctx, url, err) => Container(
                               color: AppTheme.black,
                               child: const Center(
-                                child: Icon(
-                                  Icons.broken_image_rounded,
+                                child: FaIcon(
+                                  FontAwesomeIcons.image,
                                   color: AppTheme.gray,
                                   size: 40,
                                 ),
@@ -934,11 +940,11 @@ class _ProductCard extends ConsumerWidget {
                               color: AppTheme.black,
                               shape: BoxShape.circle,
                             ),
-                            child: Icon(
+                            child: FaIcon(
                               isWishlisted
-                                  ? Icons.favorite_rounded
-                                  : Icons.favorite_border_rounded,
-                              size: 18,
+                                  ? FontAwesomeIcons.solidHeart
+                                  : FontAwesomeIcons.heart,
+                              size: 14,
                               color: isWishlisted
                                   ? AppTheme.gold
                                   : Colors.white70,

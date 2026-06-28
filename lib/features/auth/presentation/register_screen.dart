@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import '../../../shared/widgets/valor_logo.dart';
 import '../../../shared/widgets/custom_textfield.dart';
@@ -76,7 +77,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                     label: 'Full Name',
                     hint: 'John Doe',
                     controller: _nameController,
-                    prefixIcon: const Icon(Icons.person_outline, color: Colors.white70),
+                    prefixIcon: const FaIcon(FontAwesomeIcons.user, color: Colors.white70),
                     validator: (value) {
                       if (value == null || value.isEmpty) return 'Please enter your name';
                       return null;
@@ -88,7 +89,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                     hint: 'you@example.com',
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
-                    prefixIcon: const Icon(Icons.email_outlined, color: Colors.white70),
+                    prefixIcon: const FaIcon(FontAwesomeIcons.envelope, color: Colors.white70),
                     validator: (value) {
                       if (value == null || value.isEmpty) return 'Please enter your email';
                       if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) return 'Please enter a valid email';
@@ -101,10 +102,10 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                     hint: 'Create a strong password',
                     controller: _passwordController,
                     obscureText: _obscurePassword,
-                    prefixIcon: const Icon(Icons.lock_outlined, color: Colors.white70),
+                    prefixIcon: const FaIcon(FontAwesomeIcons.lock, color: Colors.white70),
                     suffixIcon: GestureDetector(
                       onTap: () => setState(() => _obscurePassword = !_obscurePassword),
-                      child: Icon(_obscurePassword ? Icons.visibility_off_outlined : Icons.visibility_outlined, color: Colors.white70),
+                      child: FaIcon(_obscurePassword ? FontAwesomeIcons.eyeSlash : FontAwesomeIcons.eye, color: Colors.white70),
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) return 'Please enter a password';
@@ -118,10 +119,10 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                     hint: 'Re-enter your password',
                     controller: _confirmPasswordController,
                     obscureText: _obscureConfirm,
-                    prefixIcon: const Icon(Icons.lock_outlined, color: Colors.white70),
+                    prefixIcon: const FaIcon(FontAwesomeIcons.lock, color: Colors.white70),
                     suffixIcon: GestureDetector(
                       onTap: () => setState(() => _obscureConfirm = !_obscureConfirm),
-                      child: Icon(_obscureConfirm ? Icons.visibility_off_outlined : Icons.visibility_outlined, color: Colors.white70),
+                      child: FaIcon(_obscureConfirm ? FontAwesomeIcons.eyeSlash : FontAwesomeIcons.eye, color: Colors.white70),
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) return 'Please confirm your password';
@@ -132,7 +133,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                   const SizedBox(height: 32),
                   PrimaryButton(
                     text: 'Create Account',
-                    icon: Icons.person_add_rounded,
+                    icon: FontAwesomeIcons.userPlus,
                     isLoading: authState.status == AuthStatus.loading,
                     onPressed: () {
                       if (_formKey.currentState?.validate() ?? false) {

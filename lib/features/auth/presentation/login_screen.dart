@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import '../../../shared/widgets/valor_logo.dart';
 import '../../../shared/widgets/custom_textfield.dart';
@@ -72,7 +73,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     hint: 'you@example.com',
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
-                    prefixIcon: const Icon(Icons.email_outlined, color: Colors.white70),
+                    prefixIcon: const FaIcon(FontAwesomeIcons.envelope, color: Colors.white70),
                     validator: (value) {
                       if (value == null || value.isEmpty) return 'Please enter your email';
                       if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) return 'Please enter a valid email';
@@ -85,10 +86,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     hint: 'Enter your password',
                     controller: _passwordController,
                     obscureText: _obscurePassword,
-                    prefixIcon: const Icon(Icons.lock_outlined, color: Colors.white70),
+                    prefixIcon: const FaIcon(FontAwesomeIcons.lock, color: Colors.white70),
                     suffixIcon: GestureDetector(
                       onTap: () => setState(() => _obscurePassword = !_obscurePassword),
-                      child: Icon(_obscurePassword ? Icons.visibility_off_outlined : Icons.visibility_outlined, color: Colors.white70),
+                      child: FaIcon(_obscurePassword ? FontAwesomeIcons.eyeSlash : FontAwesomeIcons.eye, color: Colors.white70),
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) return 'Please enter your password';
@@ -99,7 +100,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   const SizedBox(height: 32),
                   PrimaryButton(
                     text: 'Sign In',
-                    icon: Icons.arrow_forward_rounded,
+                    icon: FontAwesomeIcons.arrowRight,
                     isLoading: authState.status == AuthStatus.loading,
                     onPressed: () {
                       if (_formKey.currentState?.validate() ?? false) {

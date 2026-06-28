@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:go_router/go_router.dart';
 import '../../../app/theme/app_theme.dart';
@@ -21,7 +22,7 @@ class WishlistScreen extends ConsumerWidget {
         data: (wishlist) {
           if (wishlist.isEmpty) {
             return EmptyState(
-              icon: Icons.favorite_border,
+              icon: FontAwesomeIcons.heart,
               title: 'Your wishlist is empty',
               subtitle: 'Save items you love for later',
               actionLabel: 'Browse Products',
@@ -50,8 +51,8 @@ class WishlistScreen extends ConsumerWidget {
                           width: 80,
                           height: 100,
                           fit: BoxFit.cover,
-                          placeholder: (ctx, url) => Container(width: 80, height: 100, color: AppTheme.black, child: const Center(child: Icon(Icons.image, color: AppTheme.gray))),
-                          errorWidget: (ctx, url, err) => Container(width: 80, height: 100, color: AppTheme.black, child: const Center(child: Icon(Icons.broken_image, color: AppTheme.gray))),
+                          placeholder: (ctx, url) => Container(width: 80, height: 100, color: AppTheme.black, child: const Center(child: FaIcon(FontAwesomeIcons.image, color: AppTheme.gray, size: 24))),
+                          errorWidget: (ctx, url, err) => Container(width: 80, height: 100, color: AppTheme.black, child: const Center(child: FaIcon(FontAwesomeIcons.image, color: AppTheme.gray, size: 24))),
                         ),
                       ),
                       const SizedBox(width: 14),
@@ -75,12 +76,12 @@ class WishlistScreen extends ConsumerWidget {
                                 SnackBar(content: const Text('Moved to cart'), backgroundColor: AppTheme.gold, behavior: SnackBarBehavior.floating, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
                               );
                             },
-                            child: Container(padding: const EdgeInsets.all(8), decoration: BoxDecoration(color: AppTheme.gold.withAlpha(50), borderRadius: BorderRadius.circular(10)), child: const Icon(Icons.shopping_bag_outlined, color: AppTheme.gold, size: 20)),
+                            child: Container(padding: const EdgeInsets.all(8), decoration: BoxDecoration(color: AppTheme.gold.withAlpha(50), borderRadius: BorderRadius.circular(10)), child: const FaIcon(FontAwesomeIcons.bagShopping, color: AppTheme.gold, size: 18)),
                           ),
                           const SizedBox(height: 8),
                           GestureDetector(
                             onTap: () => ref.read(wishlistProvider.notifier).remove(product.id),
-                            child: Container(padding: const EdgeInsets.all(8), decoration: BoxDecoration(color: Colors.redAccent.withAlpha(50), borderRadius: BorderRadius.circular(10)), child: const Icon(Icons.delete_outline, color: Colors.redAccent, size: 20)),
+                            child: Container(padding: const EdgeInsets.all(8), decoration: BoxDecoration(color: Colors.redAccent.withAlpha(50), borderRadius: BorderRadius.circular(10)), child: const FaIcon(FontAwesomeIcons.trashCan, color: Colors.redAccent, size: 18)),
                           ),
                         ],
                       ),

@@ -49,8 +49,8 @@ class MockDataSource {
       _load('posts.json').then((v) => _postsData = v),
     ]);
 
-    _allProducts = (_productsData['data'] as List).map((e) => ProductModel.fromJson(e as Map<String, dynamic>)).toList();
-    _allCategories = (_categoriesData['data'] as List).map((e) => CategoryModel.fromJson(e as Map<String, dynamic>)).toList();
+    _allProducts = ((_productsData['data'] ?? []) as List).map((e) => ProductModel.fromJson(e as Map<String, dynamic>)).toList();
+    _allCategories = ((_categoriesData['data'] ?? []) as List).map((e) => CategoryModel.fromJson(e as Map<String, dynamic>)).toList();
     for (final p in _allProducts!) {
       _productsBySlug[p.slug] = p;
     }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../app/theme/app_theme.dart';
@@ -15,21 +16,21 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
 
-  static const _slides = [
+  static final _slides = [
     _OnboardingSlide(
-      icon: Icons.style_outlined,
+      icon: FontAwesomeIcons.shirt,
       title: 'Discover Premium Fashion',
       subtitle: 'Explore curated collections from the world\'s most prestigious fashion brands. Elevate your style with VALOR.',
       color: Color(0xFFD4AF37),
     ),
     _OnboardingSlide(
-      icon: Icons.fitbit_outlined,
+      icon: FontAwesomeIcons.robot,
       title: 'AI-Powered Size Recommendations',
       subtitle: 'Never worry about the wrong fit again. Our smart AI analyzes your measurements to recommend the perfect size every time.',
       color: Color(0xFF6C63FF),
     ),
     _OnboardingSlide(
-      icon: Icons.map_outlined,
+      icon: FontAwesomeIcons.mapLocationDot,
       title: 'Find Stores Near You',
       subtitle: 'Locate the nearest VALOR store with interactive maps. Visit us for a personalized styling experience.',
       color: Color(0xFF00C9A7),
@@ -81,7 +82,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                             color: slide.color.withAlpha(25),
                             shape: BoxShape.circle,
                           ),
-                          child: Icon(slide.icon, size: 64, color: slide.color),
+                          child: FaIcon(slide.icon, size: 64, color: slide.color),
                         ),
                         const SizedBox(height: 48),
                         Text(slide.title, textAlign: TextAlign.center, style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w800, color: Colors.white, letterSpacing: -0.5)),
@@ -130,7 +131,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 }
 
 class _OnboardingSlide {
-  final IconData icon;
+  final dynamic icon;
   final String title;
   final String subtitle;
   final Color color;

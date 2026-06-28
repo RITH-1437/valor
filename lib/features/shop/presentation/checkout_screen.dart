@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import '../../../app/theme/app_theme.dart';
 import '../../../core/providers/api_cart_provider.dart';
@@ -88,7 +89,7 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
                     if (addresses.isEmpty) {
                       return TextButton.icon(
                         onPressed: () => context.push('/addresses'),
-                        icon: const Icon(Icons.add, color: AppTheme.gold),
+                        icon: const FaIcon(FontAwesomeIcons.plus, color: AppTheme.gold, size: 14),
                         label: const Text('Add a shipping address', style: TextStyle(color: AppTheme.gold)),
                       );
                     }
@@ -105,7 +106,7 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
                           ),
                           child: Row(
                             children: [
-                              Icon(_selectedAddress?.id == addr.id ? Icons.radio_button_checked : Icons.radio_button_unchecked, color: AppTheme.gold, size: 20),
+                              FaIcon(_selectedAddress?.id == addr.id ? FontAwesomeIcons.circleDot : FontAwesomeIcons.circle, color: AppTheme.gold, size: 18),
                               const SizedBox(width: 12),
                               Expanded(
                                 child: Column(
@@ -140,11 +141,11 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
             isActive: _currentStep >= 1,
             content: Column(
               children: [
-                _paymentOption('credit_card', 'Credit Card', Icons.credit_card_rounded),
+                _paymentOption('credit_card', 'Credit Card', FontAwesomeIcons.creditCard),
                 const SizedBox(height: 8),
-                _paymentOption('debit_card', 'Debit Card', Icons.payment),
+                _paymentOption('debit_card', 'Debit Card', FontAwesomeIcons.creditCard),
                 const SizedBox(height: 8),
-                _paymentOption('cash_on_delivery', 'Cash on Delivery', Icons.money),
+                _paymentOption('cash_on_delivery', 'Cash on Delivery', FontAwesomeIcons.moneyBill),
               ],
             ),
           ),
@@ -241,8 +242,15 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
     }
   }
 
-  Widget _paymentOption(String method, String label, IconData icon) {
+  Widget _paymentOption(String method, String label, dynamic icon) {
     final selected = _paymentMethod == method;
+    Widget iconWidget = const SizedBox.shrink();
+    if (icon is FaIconData) {
+      iconWidget = FaIcon(icon, color: selected ? AppTheme.gold : Colors.white, size: 18);
+    } else if (icon is IconData) {
+      iconWidget = Icon(icon, color: selected ? AppTheme.gold : Colors.white, size: 20);
+    }
+
     return GestureDetector(
       onTap: () => setState(() => _paymentMethod = method),
       child: Container(
@@ -254,11 +262,11 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
         ),
         child: Row(
           children: [
-            Icon(icon, color: selected ? AppTheme.gold : Colors.white),
+            SizedBox(width: 24, child: Center(child: iconWidget)),
             const SizedBox(width: 12),
             Text(label, style: TextStyle(color: selected ? AppTheme.gold : Colors.white, fontWeight: FontWeight.w600)),
             const Spacer(),
-            if (selected) const Icon(Icons.check_circle_outline, color: AppTheme.gold, size: 20),
+            if (selected) const FaIcon(FontAwesomeIcons.circleCheck, color: AppTheme.gold, size: 18),
           ],
         ),
       ),

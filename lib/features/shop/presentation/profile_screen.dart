@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -51,7 +52,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               ),
               const SizedBox(height: 24),
               _avatarOption(
-                icon: Icons.camera_alt_outlined,
+                icon: FontAwesomeIcons.camera,
                 label: 'Take Photo',
                 onTap: () {
                   Navigator.pop(ctx);
@@ -59,7 +60,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                 },
               ),
               _avatarOption(
-                icon: Icons.photo_library_outlined,
+                icon: FontAwesomeIcons.images,
                 label: 'Choose From Gallery',
                 onTap: () {
                   Navigator.pop(ctx);
@@ -68,7 +69,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               ),
               if (ref.read(authProvider).user?.avatar != null)
                 _avatarOption(
-                  icon: Icons.delete_outline,
+                  icon: FontAwesomeIcons.trashCan,
                   label: 'Remove Photo',
                   isDestructive: true,
                   onTap: () {
@@ -85,13 +86,20 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   }
 
   Widget _avatarOption({
-    required IconData icon,
+    required dynamic icon,
     required String label,
     required VoidCallback onTap,
     bool isDestructive = false,
   }) {
+    Widget iconWidget = const SizedBox.shrink();
+    if (icon is FaIconData) {
+      iconWidget = FaIcon(icon, color: isDestructive ? Colors.redAccent : AppTheme.gold);
+    } else if (icon is IconData) {
+      iconWidget = Icon(icon, color: isDestructive ? Colors.redAccent : AppTheme.gold);
+    }
+
     return ListTile(
-      leading: Icon(icon, color: isDestructive ? Colors.redAccent : AppTheme.gold),
+      leading: iconWidget,
       title: Text(
         label,
         style: TextStyle(
@@ -186,7 +194,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         title: const Text('Profile'),
         actions: [
           IconButton(
-            icon: const Icon(Icons.settings_outlined, color: AppTheme.gray),
+            icon: const FaIcon(FontAwesomeIcons.gear, color: AppTheme.gray),
             onPressed: () => context.push('/settings'),
           ),
         ],
@@ -254,8 +262,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                         shape: BoxShape.circle,
                         border: Border.all(color: AppTheme.black, width: 2),
                       ),
-                      child: const Icon(
-                        Icons.camera_alt_outlined,
+                      child: const FaIcon(
+                        FontAwesomeIcons.camera,
                         color: AppTheme.black,
                         size: 16,
                       ),
@@ -289,7 +297,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             const SizedBox(height: 32),
             _menuItem(
               context,
-              Icons.receipt_long_outlined,
+              FontAwesomeIcons.receipt,
               'My Orders',
               AppTheme.gold,
               () => context.push('/orders'),
@@ -297,7 +305,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             const SizedBox(height: 8),
             _menuItem(
               context,
-              Icons.favorite_outline,
+              FontAwesomeIcons.heart,
               'Wishlist',
               Colors.redAccent,
               () => context.push('/wishlist'),
@@ -305,7 +313,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             const SizedBox(height: 8),
             _menuItem(
               context,
-              Icons.location_on_outlined,
+              FontAwesomeIcons.locationDot,
               'Shipping Addresses',
               AppTheme.gray,
               () => context.push('/addresses'),
@@ -313,7 +321,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             const SizedBox(height: 8),
             _menuItem(
               context,
-              Icons.notifications_outlined,
+              FontAwesomeIcons.bell,
               'Notifications',
               Colors.blue,
               () => context.push('/notifications'),
@@ -328,7 +336,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   } catch (_) {}
                   if (context.mounted) context.go('/login');
                 },
-                icon: const Icon(Icons.logout_rounded, color: Colors.redAccent),
+                icon: const FaIcon(FontAwesomeIcons.rightFromBracket, color: Colors.redAccent),
                 label: const Text(
                   'Sign Out',
                   style: TextStyle(color: Colors.redAccent),
@@ -356,8 +364,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              Icons.person_outline_rounded,
+            FaIcon(
+              FontAwesomeIcons.user,
               color: AppTheme.gray,
               size: 44,
             ),
@@ -398,11 +406,18 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
 
   Widget _menuItem(
     BuildContext context,
-    IconData icon,
+    dynamic icon,
     String label,
     Color color,
     VoidCallback onTap,
   ) {
+    Widget iconWidget = const SizedBox.shrink();
+    if (icon is FaIconData) {
+      iconWidget = FaIcon(icon, color: color, size: 18);
+    } else if (icon is IconData) {
+      iconWidget = Icon(icon, color: color, size: 22);
+    }
+
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -413,7 +428,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         ),
         child: Row(
           children: [
-            Icon(icon, color: color, size: 22),
+            SizedBox(width: 24, child: Center(child: iconWidget)),
             const SizedBox(width: 14),
             Expanded(
               child: Text(
@@ -425,7 +440,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                 ),
               ),
             ),
-            const Icon(Icons.chevron_right, color: AppTheme.gray, size: 20),
+            const FaIcon(FontAwesomeIcons.chevronRight, color: AppTheme.gray, size: 14),
           ],
         ),
       ),

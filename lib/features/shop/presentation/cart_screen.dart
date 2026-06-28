@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../../../app/theme/app_theme.dart';
@@ -21,7 +22,7 @@ class CartScreen extends ConsumerWidget {
         data: (cart) {
           if (cart.items.isEmpty) {
             return EmptyState(
-              icon: Icons.shopping_cart_outlined,
+              icon: FontAwesomeIcons.cartShopping,
               title: 'Your cart is empty',
               subtitle: 'Browse our collection and find something you love',
               actionLabel: 'Start Shopping',
@@ -113,8 +114,8 @@ class _CartItemCard extends StatelessWidget {
               width: 90,
               height: 110,
               fit: BoxFit.cover,
-              placeholder: (ctx, url) => Container(width: 90, height: 110, color: AppTheme.black, child: const Center(child: Icon(Icons.image, color: AppTheme.gray))),
-              errorWidget: (ctx, url, err) => Container(width: 90, height: 110, color: AppTheme.black, child: const Center(child: Icon(Icons.broken_image, color: AppTheme.gray))),
+              placeholder: (ctx, url) => Container(width: 90, height: 110, color: AppTheme.black, child: const Center(child: FaIcon(FontAwesomeIcons.image, color: AppTheme.gray, size: 24))),
+              errorWidget: (ctx, url, err) => Container(width: 90, height: 110, color: AppTheme.black, child: const Center(child: FaIcon(FontAwesomeIcons.image, color: AppTheme.gray, size: 24))),
             ),
           ),
           const SizedBox(width: 14),
@@ -133,19 +134,19 @@ class _CartItemCard extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () { if (item.quantity > 1) onUpdateQuantity(item.quantity - 1); },
-                      child: Container(padding: const EdgeInsets.all(4), decoration: BoxDecoration(color: AppTheme.black, borderRadius: BorderRadius.circular(6)), child: const Icon(Icons.remove, size: 16, color: Colors.white)),
+                      child: Container(padding: const EdgeInsets.all(4), decoration: BoxDecoration(color: AppTheme.black, borderRadius: BorderRadius.circular(6)), child: const FaIcon(FontAwesomeIcons.minus, size: 12, color: Colors.white)),
                     ),
                     Container(margin: const EdgeInsets.symmetric(horizontal: 10), child: Text('${item.quantity}', style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w700))),
                     GestureDetector(
                       onTap: () => onUpdateQuantity(item.quantity + 1),
-                      child: Container(padding: const EdgeInsets.all(4), decoration: BoxDecoration(color: AppTheme.black, borderRadius: BorderRadius.circular(6)), child: const Icon(Icons.add, size: 16, color: Colors.white)),
+                      child: Container(padding: const EdgeInsets.all(4), decoration: BoxDecoration(color: AppTheme.black, borderRadius: BorderRadius.circular(6)), child: const FaIcon(FontAwesomeIcons.plus, size: 12, color: Colors.white)),
                     ),
                   ],
                 ),
               ],
             ),
           ),
-          GestureDetector(onTap: onRemove, child: const Padding(padding: EdgeInsets.all(4), child: Icon(Icons.close, color: AppTheme.gray, size: 18))),
+          GestureDetector(onTap: onRemove, child: const Padding(padding: EdgeInsets.all(4), child: FaIcon(FontAwesomeIcons.xmark, color: AppTheme.gray, size: 16))),
         ],
       ),
     );
